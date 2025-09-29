@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موظف الشهر | دار الدواء</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap');
+
+        :root {
+            /* Persian Green Color Scheme */
+            --persian-green: #00A693;
+            --persian-green-dark: #00897B;
+            --persian-green-light: #4DB6AC;
+            --persian-green-soft: #E0F2F1;
+            --teal-accent: #00796B;
+            --teal-light: #B2DFDB;
+            
+            /* Modern Color Extensions */
+            --deep-teal: #004D40;
+            --mint-cream: #F1F8E9;
+            --white: #FFFFFF;
+            --text-dark: #263238;
+            --text-light: #ECEFF1;
+            --glass-light: rgba(255, 255, 255, 0.1);
+            --glass-dark: rgba(0, 0, 0, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            
+            /* Typography */
+            --font-primary: 'Tajawal', 'Almarai', sans-serif;
+            --font-display: 'Almarai', sans-serif;
+            
+            /* Spacing System */
+            --space-xxl: 5rem;
+            --space-xl: 3rem;
+            --space-lg: 2rem;
+            --space-md: 1.5rem;
+            --space-sm: 1rem;
+            --space-xs: 0.5rem;
+            
+            /* Advanced Transitions */
+            --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-float: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--persian-green-soft) 0%, var(--white) 100%);
+            color: var(--text-dark);
+            text-align: right;
+            direction: rtl;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Elegant Background Pattern */
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 167, 147, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 85% 30%, rgba(0, 121, 107, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 80%, rgba(77, 182, 172, 0.1) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        /* Modern Navigation */
+        .modern-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--teal-light);
+            transition: all var(--transition-smooth);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-sm) var(--space-md);
+        }
+
+        .nav-logo {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-logo img {
+            height: 50px;
+            transition: all var(--transition-smooth);
+        }
+
+        .nav-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: var(--space-lg);
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 4px;
+            transition: all var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--persian-green);
+            transition: width var(--transition-smooth);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--persian-green);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 var(--space-md);
+            margin-top: 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--persian-green) 0%, var(--persian-green-dark) 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: var(--space-xl);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--persian-green);
+            color: var(--white);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            box-shadow: 0 10px 20px rgba(0, 167, 147, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: var(--space-md);
+            line-height: 1.1;
+            color: var(--deep-teal);
+        }
+
+        .title-line {
+            display: block;
+        }
+
+        .title-line.accent {
+            color: var(--persian-green);
+            position: relative;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: var(--space-xl);
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-md);
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-xxl);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: var(--space-md);
+            position: relative;
+            display: inline-block;
+            color: var(--deep-teal);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 100px;
+            height: 4px;
+            background: var(--persian-green);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Employees Grid - UPDATED FOR DESKTOP & MOBILE */
+        .employees-grid {
+            display: grid;
+            /* 4 columns on desktop, 1 column on mobile */
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xxl);
+        }
+
+        /* Employee Card */
+        .employee-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: var(--space-lg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+            border: 1px solid var(--teal-light);
+        }
+
+        .employee-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--persian-green);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-smooth);
+        }
+
+        .employee-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .employee-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .employee-photo-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto var(--space-md);
+        }
+
+        .employee-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--persian-green-light);
+            transition: all var(--transition-smooth);
+            position: relative;
+            z-index: 2;
+        }
+
+        .employee-card:hover .employee-photo {
+            border-color: var(--persian-green);
+            transform: scale(1.05);
+        }
+
+        .photo-frame {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: var(--persian-green);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            z-index: 1;
+        }
+
+        .employee-card:hover .photo-frame {
+            opacity: 0.1;
+        }
+
+        .employee-name {
+            font-size: 1.5rem;
+            color: var(--deep-teal);
+            margin-bottom: var(--space-xs);
+            transition: color var(--transition-smooth);
+        }
+
+        .employee-title {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+            opacity: 0.7;
+            transition: color var(--transition-smooth);
+        }
+
+        .employee-achievement {
+            background: var(--persian-green-light);
+            color: var(--white);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: var(--space-md);
+            transition: all var(--transition-smooth);
+        }
+
+        .employee-card:hover .employee-achievement {
+            background: var(--persian-green);
+        }
+
+        .badges-container {
+            margin-bottom: var(--space-md);
+        }
+
+        .badge {
+            background: var(--persian-green-soft);
+            color: var(--persian-green);
+            font-weight: 700;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin: 0 var(--space-xs) var(--space-xs) 0;
+            display: inline-block;
+            transition: all var(--transition-smooth);
+        }
+
+        .employee-card:hover .badge {
+            background: var(--persian-green);
+            color: var(--white);
+        }
+
+        .social-share {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+        }
+
+        .social-share a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--persian-green-soft);
+            color: var(--persian-green);
+            transition: all var(--transition-smooth);
+        }
+
+        .social-share a:hover {
+            transform: translateY(-3px);
+            background: var(--persian-green);
+            color: var(--white);
+        }
+
+        /* Motivational Section */
+        .motivational-section {
+            padding: var(--space-xxl) 0;
+            background: linear-gradient(135deg, var(--persian-green) 0%, var(--persian-green-dark) 100%);
+            color: var(--white);
+            margin-top: var(--space-xxl);
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .motivational-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+
+        .motivational-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-icon {
+            margin-bottom: var(--space-lg);
+            opacity: 0.7;
+        }
+
+        .motivational-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: var(--space-lg);
+        }
+
+        .motivational-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: var(--space-xl);
+            opacity: 0.9;
+        }
+
+        .signature {
+            font-style: italic;
+            opacity: 0.8;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: var(--space-md);
+            display: inline-block;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--white);
+            padding: var(--space-xl) 0;
+            border-top: 1px solid var(--teal-light);
+            margin-top: var(--space-xxl);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--space-md);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .footer-logo img {
+            height: 40px;
+        }
+
+        .footer-info {
+            text-align: center;
+            flex: 1;
+        }
+
+        .footer-info p {
+            margin-bottom: var(--space-xs);
+            opacity: 0.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .social-links a {
+            color: var(--text-dark);
+            transition: color var(--transition-smooth);
+        }
+
+        .social-links a:hover {
+            color: var(--persian-green);
+        }
+
+        /* Dynamic Card Colors */
+        .card-theme-1 { --persian-green: #00A693; --persian-green-light: #4DB6AC; }
+        .card-theme-2 { --persian-green: #00897B; --persian-green-light: #26A69A; }
+        .card-theme-3 { --persian-green: #00796B; --persian-green-light: #009688; }
+        .card-theme-4 { --persian-green: #00695C; --persian-green-light: #00897B; }
+
+        /* Responsive Design - UPDATED FOR CARDS LAYOUT */
+        @media (max-width: 1200px) {
+            .employees-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-section {
+                min-height: 70vh;
+                margin-top: 70px;
+            }
+            
+            /* Cards in one column on mobile */
+            .employees-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .employee-card {
+                padding: var(--space-md);
+            }
+            
+            .employee-photo-container {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        /* Focus states for accessibility */
+        .social-share a:focus,
+        .nav-link:focus {
+            outline: 2px solid var(--persian-green);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Pattern -->
+    <div class="background-pattern"></div>
+
+    <!-- Modern Navigation -->
+    <nav class="modern-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" alt="شعار دار الدواء">
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="nav-link active">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>سبتمبر 2025</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">موظف</span>
+                <span class="title-line accent">الشهر</span>
+            </h1>
+            <p class="hero-tagline">تقديرًا للتميز والإنجازات الاستثنائية</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Employees Grid -->
+        <section class="employees-section">
+            <div class="section-header">
+                <h2 class="section-title">المكرمون هذا الشهر</h2>
+                <p class="section-subtitle">نقدر جهودكم المتميزة التي تساهم في تقدمنا المستمر</p>
+            </div>
+            
+            <div id="employees-container" class="employees-grid">
+                <!-- Employee cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Motivational Section -->
+        <section class="motivational-section">
+            <div class="motivational-content">
+                <div class="quote-icon">
+                    <i class="fas fa-quote-right fa-2x"></i>
+                </div>
+                <h2 class="motivational-title">شغفكم يصنع التميز!</h2>
+                <p class="motivational-text">لجميع الموظفين: اجتهادكم اليوم هو أساس نجاحكم غداً. استمروا في تقديم أفضل ما لديكم، فجهودكم تقدّر وهي مصدر إلهام للجميع. نحن نقدر كل خطوة تخطونها نحو التميز ونؤمن بأن العمل الجماعي هو سر نجاحنا.</p>
+                <div class="signature">
+                    <span>إدارة دار الدواء - 2025</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" alt="شعار دار الدواء">
+            </div>
+            <div class="footer-info">
+                <p>جميع الحقوق محفوظة © 2025 دار الدواء</p>
+                <p>تقدير التميز، تحفيز الإبداع</p>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="فيسبوك">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" aria-label="تويتر">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" aria-label="لينكد إن">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Employee Data ---
+            const employeesOfTheMonth = [
+                {
+                    name: "سارة محمود",
+                    title: "Medical Rep",
+                    photo: "https://images.pexels.com/photos/7552313/pexels-photo-7552313.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    achievement: "زيادة مبيعات المنطقة بنسبة 25%",
+                    badges: ["أسرع نمو", "رائد المبيعات"],
+                    theme: "card-theme-1"
+                },
+                {
+                    name: "أحمد علي",
+                    title: "Sales Supervisor",
+                    photo: "https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    achievement: "قيادة الفريق لتحقيق أهداف الربع الثالث",
+                    badges: ["أداء الربع الثالث"],
+                    theme: "card-theme-2"
+                },
+                {
+                    name: "فاطمة يوسف",
+                    title: "Sales",
+                    photo: "https://images.pexels.com/photos/7710169/pexels-photo-7710169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    achievement: "أفضل أداء في تحقيق أهداف المبيعات الشهرية",
+                    badges: ["المثابرة"],
+                    theme: "card-theme-3"
+                },
+                {
+                    name: "علي حسن",
+                    title: "Promotion Supervisor",
+                    photo: "https://images.pexels.com/photos/9301866/pexels-photo-9301866.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    achievement: "تطوير استراتيجية تسويق مبتكرة",
+                    badges: ["الموظف المبدع"],
+                    theme: "card-theme-4"
+                }
+            ];
+
+            const employeesContainer = document.getElementById('employees-container');
+
+            // --- Function to create employee cards ---
+            function createEmployeeCard(employee) {
+                const cardDiv = document.createElement('div');
+                cardDiv.classList.add('employee-card', employee.theme);
+                
+                // Base URLs for social media sharing
+                const shareUrls = {
+                    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(`تهانينا للموظف ${employee.name}!`)}`,
+                    linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(`موظف الشهر: ${employee.name}`)}&summary=${encodeURIComponent(employee.achievement)}`,
+                    twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(`موظف الشهر: ${employee.name} - ${employee.achievement}`)}&url=${encodeURIComponent(window.location.href)}`
+                };
+
+                const cardContent = `
+                    <div class="card-content">
+                        <div class="employee-photo-container">
+                            <div class="photo-frame"></div>
+                            <img src="${employee.photo}" alt="صورة ${employee.name}" class="employee-photo">
+                        </div>
+                        <h3 class="employee-name">${employee.name}</h3>
+                        <p class="employee-title">${employee.title}</p>
+                        <div class="employee-achievement">${employee.achievement}</div>
+                        <div class="badges-container">
+                            ${employee.badges.map(badge => `<span class="badge">${badge}</span>`).join('')}
+                        </div>
+                        <div class="social-share">
+                            <a href="${shareUrls.facebook}" target="_blank" aria-label="مشاركة على فيسبوك">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="${shareUrls.twitter}" target="_blank" aria-label="مشاركة على تويتر">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="${shareUrls.linkedin}" target="_blank" aria-label="مشاركة على لينكد إن">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                cardDiv.innerHTML = cardContent;
+                
+                // Add initial animation state
+                cardDiv.style.opacity = "0";
+                cardDiv.style.transform = "translateY(30px)";
+                cardDiv.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+                
+                employeesContainer.appendChild(cardDiv);
+                
+                // Animate card entrance
+                setTimeout(() => {
+                    cardDiv.style.opacity = "1";
+                    cardDiv.style.transform = "translateY(0)";
+                }, 200);
+            }
+
+            // Render all employee cards
+            employeesOfTheMonth.forEach(employee => {
+                createEmployeeCard(employee);
+            });
+
+            // --- Scroll Effects ---
+            const modernNav = document.querySelector('.modern-nav');
+            
+            window.addEventListener('scroll', () => {
+                // Navbar effect
+                if (window.scrollY > 50) {
+                    modernNav.style.background = "rgba(255, 255, 255, 0.98)";
+                    modernNav.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)";
+                } else {
+                    modernNav.style.background = "rgba(255, 255, 255, 0.95)";
+                    modernNav.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.05)";
+                }
+            });
+
+            // --- Subtle Hover Effects ---
+            document.addEventListener('mousemove', (e) => {
+                const cards = document.querySelectorAll('.employee-card');
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const cardX = rect.left + rect.width / 2;
+                    const cardY = rect.top + rect.height / 2;
+                    
+                    const distanceX = mouseX - cardX;
+                    const distanceY = mouseY - cardY;
+                    
+                    // Calculate rotation based on mouse position
+                    const rotateY = distanceX / 40;
+                    const rotateX = -distanceY / 40;
+                    
+                    // Apply transform only when hovering
+                    if (card.matches(':hover')) {
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+                    }
+                });
+            });
+            
+            // Reset card transform when mouse leaves
+            document.addEventListener('mouseleave', () => {
+                const cards = document.querySelectorAll('.employee-card');
+                cards.forEach(card => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                });
+            });
+
+            // Add intersection observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, observerOptions);
+
+            // Observe employee cards
+            document.querySelectorAll('.employee-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
