@@ -20,9 +20,6 @@
     .modern-nav{position:fixed;top:0;left:0;width:100%;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--teal-light);transition:all var(--transition-smooth);z-index:10}
     .nav-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:var(--space-sm) var(--space-md)}
     .nav-logo img{height:50px;transition:all var(--transition-smooth)}
-    .nav-menu{display:flex;gap:1.5rem}
-    .nav-link{text-decoration:none;color:var(--deep-teal);font-weight:600;transition:color .3s}
-    .nav-link:hover{color:var(--persian-green)}
     .hero-section{min-height:80vh;display:flex;justify-content:center;align-items:center;margin-top:80px;position:relative;overflow:hidden}
     .hero-background{position:absolute;inset:0;background:linear-gradient(135deg,var(--persian-green),var(--persian-green-dark));clip-path:polygon(0 0,100% 0,100% 85%,0 100%);z-index:-1}
     .hero-content{text-align:center;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:var(--space-xl);border-radius:16px;box-shadow:0 20px 40px rgba(0,0,0,.1)}
@@ -63,15 +60,8 @@
   <div class="background-pattern"></div>
   <nav class="modern-nav">
     <div class="nav-container">
-      <div class="nav-logo">
-        <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" alt="">
-      </div>
-      <div class="nav-menu">
-        <a href="https://dadgroup.sharepoint.com/sites/Main/SitePages/Human-Resources.aspx" class="nav-link active" target="_blank" rel="noopener noreferrer">Home</a>
-        <a href="https://www.dadgroup.com" class="nav-link" target="_blank" rel="noopener noreferrer">الموقع الرسمي</a>
-        <a href="https://dadgroup.sharepoint.com/sites/Main" class="nav-link" target="_blank" rel="noopener noreferrer">البوابة الداخلية</a>
-        <a href="https://www.linkedin.com/company/dar-al-dawa" class="nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </div>
+      <div class="nav-logo"><img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" alt=""></div>
+      <div class="nav-menu"><a href="#" class="nav-link active">Home</a></div>
     </div>
   </nav>
 
@@ -102,12 +92,36 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const employees = [
-        { n: "بلال محمد صبحي زرزر", d: "سلسلة التوريد", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Employees/%D8%A8%D9%84%D8%A7%D9%84-min.jpg" },
-        { n: "حسام الدين عبد الله عبد الزعبي", d: "عمليات الجودة", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/%D8%AD%D8%B3%D8%A7%D9%85.jpg" },
-        { n: "رغد ثابت فتحي ابو رمان", d: "البحث والتطوير", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Employees/%D8%B1%D8%BA%D8%AF-min.jpg" },
-        { n: "ساتيا اسامه تحسين صيام", d: "البحث والتطوير", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Employees/%D8%B3%D8%A7%D8%AA%D9%8A%D8%A7-min.jpg" },
-        { n: "فادي هشام احمد جابر", d: "الهندسة", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Employees/%D9%81%D8%A7%D8%AF%D9%8A-min.jpg" },
-        { n: "محمد توفيق نصر عبدالرحيم", d: "عمليات الجودة", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Employees/%D9%85%D8%AD%D9%85%D8%AF-min.jpg" }
+        {
+          n: "بلال محمد صبحي زرزر",
+          d: "سلسلة التوريد",
+          p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Employees/%D8%A8%D9%84%D8%A7%D9%84-min.jpg"
+        },
+        {
+          n: "حسام الدين عبد الله عبد الزعبي",
+          d: "عمليات الجودة",
+          p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/%D8%AD%D8%B3%D8%A7%D9%85.jpg"
+        },
+        {
+          n: "رغد ثابت فتحي ابو رمان",
+          d: "البحث والتطوير",
+          p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Employees/%D8%B1%D8%BA%D8%AF-min.jpg"
+        },
+        {
+          n: "ساتيا اسامه تحسين صيام",
+          d: "البحث والتطوير",
+          p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Employees/%D8%B3%D8%A7%D8%AA%D9%8A%D8%A7-min.jpg"
+        },
+        {
+          n: "فادي هشام احمد جابر",
+          d: "الهندسة",
+          p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Employees/%D9%81%D8%A7%D8%AF%D9%8A-min.jpg"
+        },
+        {
+          n: "محمد توفيق نصر عبدالرحيم",
+          d: "عمليات الجودة",
+          p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Employees/%D9%85%D8%AD%D9%85%D8%AF-min.jpg"
+        }
       ];
 
       const badges = ["روح الفريق","اصرار وتميز","عطاء متواصل","ملهم","تعاون مثمر","ابداع متجدد"];
@@ -116,8 +130,8 @@
 
       employees.forEach((emp, i) => {
         const card = document.createElement('div');
-        card.className = `employee-card ${themes[i]}`;
-        card.innerHTML = `
+        card.className = employee-card ${themes[i]};
+        card.innerHTML = 
           <div class="employee-photo-container">
             <img src="${emp.p}" alt="صورة ${emp.n}" class="employee-photo" crossorigin="anonymous">
           </div>
@@ -126,10 +140,11 @@
           <div class="employee-achievement">تميز في الاداء الوظيفي خلال شهر October</div>
           <div class="badges-container"><span class="badge">${badges[i]}</span></div>
           <button class="download-btn" title="تنزيل البطاقة"><i class="fa-solid fa-download"></i></button>
-        `;
+        ;
         container.appendChild(card);
       });
 
+      // download current card as PNG
       document.querySelectorAll('.download-btn').forEach((btn) => {
         btn.addEventListener('click', async (e) => {
           e.stopPropagation();
@@ -142,7 +157,9 @@
             a.download = 'employee-card.png';
             a.href = canvas.toDataURL('image/png');
             a.click();
-          } catch (err) { console.error(err); }
+          } catch (err) {
+            console.error(err);
+          }
           btn.style.visibility = prev || 'visible';
         });
       });
