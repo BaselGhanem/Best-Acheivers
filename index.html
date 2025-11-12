@@ -130,8 +130,8 @@
 
       employees.forEach((emp, i) => {
         const card = document.createElement('div');
-        card.className = employee-card ${themes[i]};
-        card.innerHTML = 
+        card.className = `employee-card ${themes[i]}`;
+        card.innerHTML = `
           <div class="employee-photo-container">
             <img src="${emp.p}" alt="صورة ${emp.n}" class="employee-photo" crossorigin="anonymous">
           </div>
@@ -140,7 +140,7 @@
           <div class="employee-achievement">تميز في الاداء الوظيفي خلال شهر October</div>
           <div class="badges-container"><span class="badge">${badges[i]}</span></div>
           <button class="download-btn" title="تنزيل البطاقة"><i class="fa-solid fa-download"></i></button>
-        ;
+        `;
         container.appendChild(card);
       });
 
