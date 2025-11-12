@@ -12,7 +12,7 @@
       --persian-green:#00A693;--persian-green-dark:#00897B;--persian-green-light:#4DB6AC;--persian-green-soft:#E0F2F1;
       --teal-accent:#00796B;--teal-light:#B2DFDB;--deep-teal:#004D40;--white:#fff;--text-dark:#263238;
       --font-primary:'Tajawal','Almarai',sans-serif;--space-xxl:5rem;--space-xl:3rem;--space-lg:2rem;--space-md:1.5rem;--space-sm:1rem;--space-xs:.5rem;
-      --transition-smooth:.3s ease
+      --transition-smooth:.4s cubic-bezier(.25,.46,.45,.94)
     }
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:var(--font-primary);background:linear-gradient(135deg,var(--persian-green-soft),var(--white));color:var(--text-dark);overflow-x:hidden}
@@ -20,29 +20,9 @@
     .modern-nav{position:fixed;top:0;left:0;width:100%;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--teal-light);transition:all var(--transition-smooth);z-index:10}
     .nav-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:var(--space-sm) var(--space-md)}
     .nav-logo img{height:50px;transition:all var(--transition-smooth)}
-    /* تنسيق الأزرار */
-    .nav-menu {
-      display: flex;
-      gap: 1.2rem;
-      align-items: center;
-    }
-    .nav-link {
-      text-decoration: none;
-      color: var(--deep-teal);
-      font-weight: 600;
-      padding: 8px 14px;
-      border-radius: 8px;
-      transition: all var(--transition-smooth);
-    }
-    .nav-link:hover {
-      background-color: var(--persian-green-soft);
-      color: var(--persian-green-dark);
-    }
-    .nav-link.active {
-      background-color: var(--persian-green);
-      color: #fff;
-    }
-
+    .nav-menu{display:flex;gap:1.5rem}
+    .nav-link{text-decoration:none;color:var(--deep-teal);font-weight:600;transition:color .3s}
+    .nav-link:hover{color:var(--persian-green)}
     .hero-section{min-height:80vh;display:flex;justify-content:center;align-items:center;margin-top:80px;position:relative;overflow:hidden}
     .hero-background{position:absolute;inset:0;background:linear-gradient(135deg,var(--persian-green),var(--persian-green-dark));clip-path:polygon(0 0,100% 0,100% 85%,0 100%);z-index:-1}
     .hero-content{text-align:center;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:var(--space-xl);border-radius:16px;box-shadow:0 20px 40px rgba(0,0,0,.1)}
@@ -76,30 +56,24 @@
     .card-theme-3{--persian-green:#00796B;--persian-green-light:#009688}
     .card-theme-4{--persian-green:#00695C;--persian-green-light:#00897B}
     @media(max-width:1200px){.employees-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:768px){
-      .employees-grid{grid-template-columns:1fr}
-      .nav-menu{flex-wrap:wrap;gap:.8rem;justify-content:center}
-    }
+    @media(max-width:768px){.employees-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <div class="background-pattern"></div>
- 
-<nav class="modern-nav">
-  <div class="nav-container">
-    <div class="nav-logo">
-      <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" alt="">
+  <nav class="modern-nav">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" alt="">
+      </div>
+      <div class="nav-menu">
+        <a href="https://dadgroup.sharepoint.com/sites/Main/SitePages/Human-Resources.aspx" class="nav-link active" target="_blank" rel="noopener noreferrer">Home</a>
+        <a href="https://www.dadgroup.com" class="nav-link" target="_blank" rel="noopener noreferrer">الموقع الرسمي</a>
+        <a href="https://dadgroup.sharepoint.com/sites/Main" class="nav-link" target="_blank" rel="noopener noreferrer">البوابة الداخلية</a>
+        <a href="https://www.linkedin.com/company/dar-al-dawa" class="nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
     </div>
-    <div class="nav-menu">
-      <a href="https://dadgroup.sharepoint.com/sites/Main/SitePages/Human-Resources.aspx" 
-         class="nav-link active" 
-         target="_blank" 
-         rel="noopener noreferrer">
-         Home
-      </a>
-    </div>
-  </div>
-</nav>
+  </nav>
 
   <header class="hero-section">
     <div class="hero-background"></div>
