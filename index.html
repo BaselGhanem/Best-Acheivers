@@ -109,9 +109,26 @@
     .card-theme-3{--persian-green:#00796B;--persian-green-light:#009688}
     .card-theme-4{--persian-green:#00695C;--persian-green-light:#00897B}
     @media(max-width:1200px){.employees-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:768px){
-      .employees-grid{grid-template-columns:1fr}
-      .nav-menu{flex-wrap:wrap;gap:.8rem;justify-content:center}
+    @media (max-width: 768px) {
+      .employees-grid { grid-template-columns: 1fr; } /* البطاقات تحت بعض */
+      
+      .nav-container {
+        flex-direction: column; 
+        padding: 10px;
+      }
+      .nav-menu {
+        width: 100%;
+        overflow-x: auto; 
+        justify-content: flex-start;
+        padding: 5px 0;
+        display: flex; /* لضمان بقائها بجانب بعض مع التمرير */
+        -webkit-overflow-scrolling: touch;
+      }
+      .nav-link {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+      }
+      .hero-section { margin-top: 130px; } 
     }
   </style>
 </head>
