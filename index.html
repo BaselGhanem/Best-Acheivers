@@ -601,12 +601,12 @@ document.querySelectorAll('.download-btn').forEach((btn) => {
           try {
             // 3. التقاط الصورة بجودة عالية لتصبح 1080x1920
             const canvas = await html2canvas(wallpaper, { 
-              backgroundColor: '#ffffff', // حل نهائي لمشكلة الخلفية السوداء
+              backgroundColor: '#ffffff',
               scale: 2, 
-              useCORS: true,
-              allowTaint: true
-            });
-            
+              useCORS: true, // مهم جداً
+              allowTaint: false, // اجعلها false لأن true تمنع تصدير الصورة إذا كانت من مصدر خارجي
+              logging: true // لتتمكن من رؤية الأخطاء في Console المتصفح
+            });            
             const a = document.createElement('a');
             a.download = 'employee-card.png';
             a.href = canvas.toDataURL('image/png');
