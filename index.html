@@ -6,11 +6,9 @@
   <title>جائزة Thank You Card | دار الدواء</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   
   <style>
@@ -231,7 +229,7 @@
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03), 0 2px 10px rgba(0,0,0,0.01);
       border: 1px solid rgba(0,0,0,0.03);
       transition: var(--transition-smooth);
-      overflow: visible; /* To allow photo to pop out slightly if needed, though kept contained here */
+      overflow: visible; 
       z-index: 1;
       animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
@@ -546,12 +544,12 @@
         "روح التميز", "افكار بناءة", "انجاز احترافي", "طاقة للعمل", "عطاء متفوق", "همة ابداعية", "تعاون مستمر"
       ];
       
-      const themes = ["card-theme-1","card-theme-2","card-theme-3","card-theme-4","card-theme-1","card-theme-2"];
+      const themes = ["card-theme-1", "card-theme-2", "card-theme-3", "card-theme-4"];
       const container = document.getElementById('employees-container');
 
       employees.forEach((emp, i) => {
         const card = document.createElement('div');
-        card.className = `employee-card ${themes[i] || 'card-theme-1'}`; // Ensure fallback if theme array is short
+        card.className = `employee-card ${themes[i % themes.length]}`; 
         card.innerHTML = `
           <div class="employee-photo-container">
             <img src="${emp.p}" alt="صورة ${emp.n}" class="employee-photo" crossorigin="anonymous">
@@ -564,7 +562,7 @@
         container.appendChild(card);
       });
 
-document.querySelectorAll('.download-btn').forEach((btn) => {
+      document.querySelectorAll('.download-btn').forEach((btn) => {
         btn.addEventListener('click', async (e) => {
           e.stopPropagation();
           const originalCard = btn.closest('.employee-card');
@@ -577,7 +575,7 @@ document.querySelectorAll('.download-btn').forEach((btn) => {
             top: '0',
             width: '540px',
             height: '960px',
-            background: 'linear-gradient(135deg, #EAF7F5, #FFFFFF)', // خلفية جذابة للموبايل
+            background: 'linear-gradient(135deg, #EAF7F5, #FFFFFF)', 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -603,9 +601,9 @@ document.querySelectorAll('.download-btn').forEach((btn) => {
             const canvas = await html2canvas(wallpaper, { 
               backgroundColor: '#ffffff',
               scale: 2, 
-              useCORS: true, // مهم جداً
-              allowTaint: false, // اجعلها false لأن true تمنع تصدير الصورة إذا كانت من مصدر خارجي
-              logging: true // لتتمكن من رؤية الأخطاء في Console المتصفح
+              useCORS: true, 
+              allowTaint: false, 
+              logging: false
             });            
             const a = document.createElement('a');
             a.download = 'employee-card.png';
@@ -619,6 +617,7 @@ document.querySelectorAll('.download-btn').forEach((btn) => {
           }
         });
       });
-      </script>
+    }); // <-- تم إضافة هذا القوس الذي كان مفقوداً
+  </script>
 </body>
 </html>
