@@ -4,137 +4,471 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>جائزة Thank You Card | دار الدواء</title>
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap');
-    :root{
-      --persian-green:#00A693;--persian-green-dark:#00897B;--persian-green-light:#4DB6AC;--persian-green-soft:#E0F2F1;
-      --teal-accent:#00796B;--teal-light:#B2DFDB;--deep-teal:#004D40;--white:#fff;--text-dark:#263238;
-      --font-primary:'Tajawal','Almarai',sans-serif;--space-xxl:5rem;--space-xl:3rem;--space-lg:2rem;--space-md:1.5rem;--space-sm:1rem;--space-xs:.5rem;
-      --transition-smooth:.3s ease
+    :root {
+      /* Premium Color Palette */
+      --persian-green: #00A693;
+      --persian-green-dark: #007D6E;
+      --persian-green-light: #4DB6AC;
+      --persian-green-soft: #EAF7F5;
+      
+      --teal-accent: #00796B;
+      --deep-teal: #082E29;
+      
+      --white: #FFFFFF;
+      --off-white: #F8FAF9;
+      --text-dark: #1A1D1C;
+      --text-muted: #64748B;
+      
+      /* Typography */
+      --font-primary: 'Inter', 'Almarai', sans-serif;
+      
+      /* Spacing */
+      --space-xxl: 6rem;
+      --space-xl: 4rem;
+      --space-lg: 2.5rem;
+      --space-md: 1.5rem;
+      --space-sm: 1rem;
+      --space-xs: 0.5rem;
+      
+      /* Transitions */
+      --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:var(--font-primary);background:linear-gradient(135deg,var(--persian-green-soft),var(--white));color:var(--text-dark);overflow-x:hidden}
-    .background-pattern{position:fixed;inset:0;background-image:radial-gradient(circle at 15% 50%,rgba(0,167,147,.1)0,transparent 20%),radial-gradient(circle at 85% 30%,rgba(0,121,107,.1)0,transparent 20%),radial-gradient(circle at 50% 80%,rgba(77,182,172,.1)0,transparent 20%);z-index:-1}
 
-    /* التعديل الجديد للـ Nav */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background-color: var(--off-white);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Soft Mesh Gradient Background */
+    .background-pattern {
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 10% 0%, rgba(0, 166, 147, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 100%, rgba(0, 121, 107, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+      z-index: -1;
+      filter: blur(40px);
+    }
+
+    /* ----------------------------------
+       Modern Floating Navbar
+       ---------------------------------- */
     .modern-nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid var(--persian-green);
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    .nav-container {
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
       max-width: 1200px;
-      margin: auto;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 100px;
+      z-index: 1000;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0,0,0,0.01);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 1.5rem;
+      padding: 0.8rem 2rem;
     }
-    .nav-logo img { height: 45px; }
+
+    .nav-logo img { 
+      height: 38px; 
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+    }
     
     .nav-menu {
       display: flex;
-      gap: 5px;
+      gap: 0.5rem;
     }
+
     .nav-link {
       text-decoration: none;
-      color: var(--deep-teal);
+      color: var(--text-muted);
       font-weight: 600;
-      font-size: 0.9rem;
-      padding: 8px 12px;
-      border-radius: 6px;
-      transition: all var(--transition-smooth);
-      white-space: nowrap; /* يمنع نزول النص لسطر جديد */
+      font-size: 0.95rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 100px;
+      transition: var(--transition-smooth);
+      white-space: nowrap;
     }
-    .nav-link:hover { background: var(--persian-green-soft); }
-    .nav-link.active { background: var(--persian-green); color: #fff; }
 
-    /* حل مشكلة الموبايل */
-    @media (max-width: 768px) {
-      .nav-container {
-        flex-direction: column; /* اللوغو فوق والقائمة تحت */
-        padding: 10px;
-      }
-      .nav-menu {
-        width: 100%;
-        overflow-x: auto; /* يسمح بالتمرير الجانبي بدلاً من النزول لأسفل */
-        justify-content: flex-start;
-        padding: 5px 0;
-        -webkit-overflow-scrolling: touch;
-      }
-      .nav-link {
-        font-size: 0.8rem;
-        padding: 6px 10px;
-      }
-      .hero-section { margin-top: 120px; } /* زيادة الهامش عشان ما يختفي المحتوى تحت الناف */
+    .nav-link:hover { 
+      color: var(--deep-teal);
+      background: rgba(0, 166, 147, 0.08); 
+    }
+
+    .nav-link.active { 
+      background: var(--text-dark); 
+      color: var(--white); 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* ----------------------------------
+       Hero Section (Apple-style Typography)
+       ---------------------------------- */
+    .hero-section {
+      padding: 180px 20px 80px;
+      text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      background: var(--white);
+      border: 1px solid rgba(0, 166, 147, 0.2);
+      color: var(--persian-green);
+      padding: 0.5rem 1.5rem;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: var(--space-md);
+      box-shadow: 0 10px 30px rgba(0, 166, 147, 0.08);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      color: var(--deep-teal);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .hero-title .accent {
+      background: linear-gradient(135deg, var(--persian-green), #00D4B2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      color: var(--text-muted);
+      font-weight: 500;
+      max-width: 600px;
+      margin: 0 auto;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    /* ----------------------------------
+       Main Content & Grid
+       ---------------------------------- */
+    .main-content {
+      max-width: 1300px;
+      margin: auto;
+      padding: 0 var(--space-md) var(--space-xl);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: var(--space-xs);
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .employees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+
+    /* ----------------------------------
+       Premium Employee Cards
+       ---------------------------------- */
+    .employee-card {
+      background: var(--white);
+      border-radius: 28px;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03), 0 2px 10px rgba(0,0,0,0.01);
+      border: 1px solid rgba(0,0,0,0.03);
+      transition: var(--transition-smooth);
+      overflow: visible; /* To allow photo to pop out slightly if needed, though kept contained here */
+      z-index: 1;
+      animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .employee-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--card-theme, var(--persian-green));
+      border-radius: 28px 28px 0 0;
+      opacity: 0.8;
+    }
+
+    .employee-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 166, 147, 0.08), 0 4px 15px rgba(0,0,0,0.02);
+      border-color: rgba(0, 166, 147, 0.1);
+    }
+
+    .employee-photo-container {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      border-radius: 50%;
+      padding: 6px;
+      background: linear-gradient(135deg, var(--white), var(--off-white));
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08), inset 0 2px 4px rgba(255,255,255,1);
+      transition: var(--transition-smooth);
+    }
+
+    .employee-card:hover .employee-photo-container {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 166, 147, 0.15), inset 0 2px 4px rgba(255,255,255,1);
+    }
+
+    .employee-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--off-white);
+    }
+
+    .employee-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.01em;
+    }
+
+    .employee-title {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .badges-container {
+      margin-top: auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--persian-green-soft);
+      color: var(--persian-green-dark);
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(0, 166, 147, 0.1);
+    }
+
+    /* Subtle Download Button */
+    .download-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      border: none;
+      background: var(--white);
+      color: var(--text-muted);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      opacity: 0;
+      transform: scale(0.8);
+      z-index: 10;
+    }
+
+    .employee-card:hover .download-btn {
+      opacity: 1;
+      transform: scale(1);
+      color: var(--persian-green);
+    }
+
+    .download-btn:hover {
+      background: var(--persian-green);
+      color: var(--white);
+      transform: scale(1.1) !important;
+      box-shadow: 0 8px 25px rgba(0, 166, 147, 0.3);
+    }
+
+    /* Staggered Animations for cards */
+    .employee-card:nth-child(1) { animation-delay: 0.1s; }
+    .employee-card:nth-child(2) { animation-delay: 0.2s; }
+    .employee-card:nth-child(3) { animation-delay: 0.3s; }
+    .employee-card:nth-child(4) { animation-delay: 0.4s; }
+    .employee-card:nth-child(5) { animation-delay: 0.5s; }
+    .employee-card:nth-child(6) { animation-delay: 0.6s; }
+    .employee-card:nth-child(7) { animation-delay: 0.7s; }
+    .employee-card:nth-child(8) { animation-delay: 0.8s; }
+    .employee-card:nth-child(9) { animation-delay: 0.9s; }
+    .employee-card:nth-child(10) { animation-delay: 1.0s; }
+    .employee-card:nth-child(11) { animation-delay: 1.1s; }
+    .employee-card:nth-child(12) { animation-delay: 1.2s; }
+    .employee-card:nth-child(13) { animation-delay: 1.3s; }
+    .employee-card:nth-child(14) { animation-delay: 1.4s; }
+    .employee-card:nth-child(15) { animation-delay: 1.5s; }
+    .employee-card:nth-child(16) { animation-delay: 1.6s; }
+
+    /* Theme variables for the top border */
+    .card-theme-1 { --card-theme: #00A693; }
+    .card-theme-2 { --card-theme: #00897B; }
+    .card-theme-3 { --card-theme: #00796B; }
+    .card-theme-4 { --card-theme: #00695C; }
+
+    /* ----------------------------------
+       Footer
+       ---------------------------------- */
+    .site-footer {
+      background: transparent;
+      padding: var(--space-xl) 0 var(--space-md);
+      text-align: center;
+      position: relative;
+    }
+
+    .site-footer img {
+      height: 35px;
+      opacity: 0.5;
+      margin-bottom: 1rem;
+      filter: grayscale(100%);
+      transition: var(--transition-smooth);
     }
     
-    .hero-background{position:absolute;inset:0;background:linear-gradient(135deg,var(--persian-green),var(--persian-green-dark));clip-path:polygon(0 0,100% 0,100% 85%,0 100%);z-index:-1}
-    .hero-content{text-align:center;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:var(--space-xl);border-radius:16px;box-shadow:0 20px 40px rgba(0,0,0,.1)}
-    .hero-badge{display:inline-block;background:var(--persian-green);color:#fff;padding:var(--space-xs) var(--space-md);border-radius:50px;font-weight:700;margin-bottom:var(--space-lg);animation:float 3s ease-in-out infinite;box-shadow:0 10px 20px rgba(0,167,147,.3)}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    .hero-title{font-size:clamp(2.5rem,6vw,4rem);color:var(--deep-teal);margin-bottom:var(--space-md)}
-    .hero-title .accent{color:var(--persian-green)}
-    .hero-tagline{opacity:.85}
-    .main-content{max-width:1200px;margin:auto;padding:var(--space-xl) var(--space-md)}
-    .section-header{text-align:center;margin-bottom:var(--space-xl)}
-    .section-title{font-size:clamp(2rem,5vw,3rem);color:var(--deep-teal);margin-bottom:var(--space-sm);position:relative;display:inline-block}
-    .section-title::after{content:'';position:absolute;bottom:-10px;right:0;width:100px;height:4px;background:var(--persian-green);border-radius:2px}
-    .section-subtitle{opacity:.7}
-    .employees-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-xl)}
-    .employee-card{background:#fff;border-radius:16px;padding:var(--space-lg);text-align:center;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08);border:1px solid var(--teal-light);transition:all var(--transition-smooth)}
-    .employee-card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(0,0,0,.15)}
-    .employee-photo-container{width:150px;height:150px;margin:0 auto var(--space-md);position:relative}
-    .employee-photo{width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid var(--persian-green-light);transition:all var(--transition-smooth)}
-    .employee-card:hover .employee-photo{border-color:var(--persian-green);transform:scale(1.05)}
-    .employee-name{font-size:1.5rem;color:var(--deep-teal);margin-bottom:var(--space-xs)}
-    .employee-title{opacity:.75;margin-bottom:var(--space-md)}
-    .employee-achievement{background:var(--persian-green-light);color:#fff;padding:var(--space-xs) var(--space-md);border-radius:50px;display:inline-block;margin-bottom:var(--space-md)}
-    .badges-container{margin-bottom:var(--space-sm)}
-    .badge{background:var(--persian-green-soft);color:var(--persian-green);font-weight:700;padding:var(--space-xs) var(--space-sm);border-radius:4px;font-size:.85rem}
-    .download-btn{border:none;background:var(--persian-green-soft);color:var(--persian-green);border-radius:50%;width:42px;height:42px;cursor:pointer;transition:all .3s;position:relative}
-    .download-btn:hover{background:var(--persian-green);color:#fff;transform:translateY(-3px)}
-    .download-btn::after{content:'تنزيل البطاقة';position:absolute;bottom:50px;right:50%;transform:translateX(50%);background:var(--deep-teal);color:#fff;padding:4px 8px;border-radius:4px;font-size:.8rem;opacity:0;white-space:nowrap;transition:opacity .3s}
-    .download-btn:hover::after{opacity:1}
-    .card-theme-1{--persian-green:#00A693;--persian-green-light:#4DB6AC}
-    .card-theme-2{--persian-green:#00897B;--persian-green-light:#26A69A}
-    .card-theme-3{--persian-green:#00796B;--persian-green-light:#009688}
-    .card-theme-4{--persian-green:#00695C;--persian-green-light:#00897B}
-    @media(max-width:1200px){.employees-grid{grid-template-columns:repeat(2,1fr)}}
+    .site-footer:hover img {
+      opacity: 1;
+      filter: grayscale(0%);
+    }
+
+    .site-footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* ----------------------------------
+       Animations Keyframes
+       ---------------------------------- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.95) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* ----------------------------------
+       Responsive Design (Mobile & Tablet)
+       ---------------------------------- */
+    @media (max-width: 992px) {
+      .employees-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 768px) {
-      .employees-grid { grid-template-columns: 1fr; } /* البطاقات تحت بعض */
+      .modern-nav {
+        top: 15px;
+        width: calc(100% - 30px);
+        border-radius: 24px;
+      }
       
       .nav-container {
-        flex-direction: column; 
-        padding: 10px;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
       }
+      
       .nav-menu {
         width: 100%;
-        overflow-x: auto; 
+        overflow-x: auto;
         justify-content: flex-start;
-        padding: 5px 0;
-        display: flex; /* لضمان بقائها بجانب بعض مع التمرير */
+        padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
       }
-      .nav-link {
-        font-size: 0.8rem;
-        padding: 6px 10px;
+      
+      /* Hide scrollbar for nav */
+      .nav-menu::-webkit-scrollbar { display: none; }
+      .nav-menu { -ms-overflow-style: none; scrollbar-width: none; }
+
+      .hero-section { 
+        padding-top: 200px; 
       }
-      .hero-section { margin-top: 130px; } 
+
+      .employees-grid { 
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .download-btn {
+        opacity: 1;
+        transform: scale(1);
+        background: var(--off-white);
+      }
     }
   </style>
 </head>
 <body>
   <div class="background-pattern"></div>
- <nav class="modern-nav">
+  
+  <nav class="modern-nav">
     <div class="nav-container">
       <div class="nav-logo">
         <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" alt="Logo">
@@ -150,179 +484,104 @@
   </nav>
 
   <header class="hero-section">
-    <div class="hero-background"></div>
-    <div class="hero-content">
-      <div class="hero-badge"><span>Feb 2026</span></div>
-      <h1 class="hero-title"><span>موظف</span> <span class="accent">الشهر</span></h1>
-      <p class="hero-tagline">تقديرا للتميز والانجازات الاستثنائية</p>
-    </div>
+    <div class="hero-badge">Apr 2026</div>
+    <h1 class="hero-title">موظف <span class="accent">الشهر</span></h1>
+    <p class="hero-tagline">تقديراً للتميز والإنجازات الاستثنائية التي ترتقي بنا نحو الأفضل</p>
   </header>
 
   <main class="main-content">
     <section class="employees-section">
       <div class="section-header">
         <h2 class="section-title">المكرمون هذا الشهر</h2>
-        <p class="section-subtitle">نقدر جهودكم المتميزة التي تساهم في تقدمنا المستمر</p>
+        <p class="section-subtitle">نُقدر جهودكم المتميزة التي تساهم في تقدمنا المستمر</p>
       </div>
       <div id="employees-container" class="employees-grid"></div>
     </section>
   </main>
 
-  <footer class="site-footer" style="background:#fff;border-top:1px solid var(--teal-light);padding:var(--space-lg) 0;text-align:center">
-    <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" height="40" alt="">
+  <footer class="site-footer">
+    <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" alt="دار الدواء">
     <p>جميع الحقوق محفوظة © 2026 دار الدواء</p>
   </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-const employees = [
-  { n: "احلام غالب عيد السليمان", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3014.png" },
-  { n: "امينه محمد محمود الخزاعله", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/4157.png" },
-  { n: "خالده سليمان محمد الصناع", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2074.png" },
-  { n: "ربحي محمد ربحي الحنش", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3679.png" },
-  { n: "سامر احمد محمد السليمان", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3127.png" },
-  { n: "سفيان ناصر عايد الغانم", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3082.png" },
-  { n: "سلامه محمد سليمان السواعير", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3189.png" },
-  { n: "شريف ابراهيم محمود بنات", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2496.png" },
-  { n: "عبدالله بركات عواد العمار", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3013.png" },
-  { n: "محمد عارف عبدالله الثوابيه", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2093.png" },
-  { n: "محمود نوفان عبدالكريم العجوري", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3153.png" },
-  { n: "فادي هشام احمد جابر", d: "الهندسه", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2473.png" },
-  { n: "انس تيسير محمد محمود", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3755.png" },
-  { n: "حازم صبري صادق السده", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3990.png" },
-  { n: "رشاد رائد احمد ابو نفيسه", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3792.png" },
-  { n: "عبد الناصر يونس يوسف خنفر", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3321.png" }
-];
-const badges = [
-"روح الفريق",
-"اصرار وتميز",
-"عطاء متواصل",
-"ملهم",
-"تعاون مثمر",
-"ابداع متجدد",
-"عمل بروح الفريق",
-"التزام عالي",
-"تفان في العمل",
-"شغف بالنجاح",
-"مبادرة دائمة",
-"طاقة ايجابية",
-"قيادة ملهمة",
-"جهد استثنائي",
-"روح المبادرة",
-"اداء متميز",
-"همة عالية",
-"روح التعاون",
-"عزيمة قوية",
-"ابداع مستمر",
-"عمل متقن",
-"اصرار على النجاح",
-"روح العطاء",
-"افكار مبتكرة",
-"اداء احترافي",
-"تفكير خلاق",
-"مشاركة فعالة",
-"جهد مخلص",
-"شريك في النجاح",
-"همة لا تتوقف",
-"روح ايجابية",
-"عمل بروح واحدة",
-"تفان لا يتوقف",
-"دعم متواصل",
-"طموح كبير",
-"انجاز مستمر",
-"حماس للعمل",
-"التزام واحتراف",
-"همة وانجاز",
-"تميز دائم",
-"عطاء بلا حدود",
-"تعاون فعال",
-"ابداع بلا توقف",
-"قيادة بالقدوة",
-"اصرار على التقدم",
-"اداء قوي",
-"افكار ملهمة",
-"عمل جماعي رائع",
-"همة متجددة",
-"شغف بالابداع",
-"مشاركة بناءة",
-"اصرار ملهم",
-"همة قيادية",
-"مبادرة خلاقة",
-"انجاز ملحوظ",
-"روح التحدي",
-"عمل متعاون",
-"اصرار ايجابي",
-"افكار متجددة",
-"جهد مشكور",
-"همة ملهمة",
-"اداء مبهر",
-"تعاون رائع",
-"روح المبادرة الدائمة",
-"طموح متجدد",
-"ابداع ملحوظ",
-"عمل بروح عالية",
-"عطاء ملهم",
-"همة لا تعرف التوقف",
-"روح الانجاز",
-"اصرار مستمر",
-"تعاون ملهم",
-"اداء متقدم",
-"افكار خلاقة",
-"همة احترافية",
-"روح التطوير",
-"عطاء متجدد",
-"انجازات متتابعة",
-"مشاركة متميزة",
-"اصرار رائع",
-"ابداع احترافي",
-"عمل ملهم",
-"همة متفوقة",
-"روح النجاح",
-"افكار متقدمة",
-"عطاء احترافي",
-"قيادة ايجابية",
-"تعاون قوي",
-"اصرار رائع",
-"همة مستمرة",
-"اداء ملهم",
-"روح التميز",
-"افكار بناءة",
-"انجاز احترافي",
-"طاقة للعمل",
-"عطاء متفوق",
-"همة ابداعية",
-"تعاون مستمر"
-];
+      const employees = [
+        { n: "احلام غالب عيد السليمان", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3014.png" },
+        { n: "امينه محمد محمود الخزاعله", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/4157.png" },
+        { n: "خالده سليمان محمد الصناع", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2074.png" },
+        { n: "ربحي محمد ربحي الحنش", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3679.png" },
+        { n: "سامر احمد محمد السليمان", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3127.png" },
+        { n: "سفيان ناصر عايد الغانم", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3082.png" },
+        { n: "سلامه محمد سليمان السواعير", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3189.png" },
+        { n: "شريف ابراهيم محمود بنات", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2496.png" },
+        { n: "عبدالله بركات عواد العمار", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3013.png" },
+        { n: "محمد عارف عبدالله الثوابيه", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2093.png" },
+        { n: "محمود نوفان عبدالكريم العجوري", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3153.png" },
+        { n: "فادي هشام احمد جابر", d: "الهندسه", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2473.png" },
+        { n: "انس تيسير محمد محمود", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3755.png" },
+        { n: "حازم صبري صادق السده", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3990.png" },
+        { n: "رشاد رائد احمد ابو نفيسه", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3792.png" },
+        { n: "عبد الناصر يونس يوسف خنفر", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3321.png" }
+      ];
+      
+      const badges = [
+        "روح الفريق", "اصرار وتميز", "عطاء متواصل", "ملهم", "تعاون مثمر", "ابداع متجدد", 
+        "عمل بروح الفريق", "التزام عالي", "تفان في العمل", "شغف بالنجاح", "مبادرة دائمة", 
+        "طاقة ايجابية", "قيادة ملهمة", "جهد استثنائي", "روح المبادرة", "اداء متميز", 
+        "همة عالية", "روح التعاون", "عزيمة قوية", "ابداع مستمر", "عمل متقن", "اصرار على النجاح", 
+        "روح العطاء", "افكار مبتكرة", "اداء احترافي", "تفكير خلاق", "مشاركة فعالة", "جهد مخلص", 
+        "شريك في النجاح", "همة لا تتوقف", "روح ايجابية", "عمل بروح واحدة", "تفان لا يتوقف", 
+        "دعم متواصل", "طموح كبير", "انجاز مستمر", "حماس للعمل", "التزام واحتراف", "همة وانجاز", 
+        "تميز دائم", "عطاء بلا حدود", "تعاون فعال", "ابداع بلا توقف", "قيادة بالقدوة", 
+        "اصرار على التقدم", "اداء قوي", "افكار ملهمة", "عمل جماعي رائع", "همة متجددة", 
+        "شغف بالابداع", "مشاركة بناءة", "اصرار ملهم", "همة قيادية", "مبادرة خلاقة", 
+        "انجاز ملحوظ", "روح التحدي", "عمل متعاون", "اصرار ايجابي", "افكار متجددة", 
+        "جهد مشكور", "همة ملهمة", "اداء مبهر", "تعاون رائع", "روح المبادرة الدائمة", 
+        "طموح متجدد", "ابداع ملحوظ", "عمل بروح عالية", "عطاء ملهم", "همة لا تعرف التوقف", 
+        "روح الانجاز", "اصرار مستمر", "تعاون ملهم", "اداء متقدم", "افكار خلاقة", 
+        "همة احترافية", "روح التطوير", "عطاء متجدد", "انجازات متتابعة", "مشاركة متميزة", 
+        "اصرار رائع", "ابداع احترافي", "عمل ملهم", "همة متفوقة", "روح النجاح", "افكار متقدمة", 
+        "عطاء احترافي", "قيادة ايجابية", "تعاون قوي", "اصرار رائع", "همة مستمرة", "اداء ملهم", 
+        "روح التميز", "افكار بناءة", "انجاز احترافي", "طاقة للعمل", "عطاء متفوق", "همة ابداعية", "تعاون مستمر"
+      ];
+      
       const themes = ["card-theme-1","card-theme-2","card-theme-3","card-theme-4","card-theme-1","card-theme-2"];
       const container = document.getElementById('employees-container');
 
-    employees.forEach((emp, i) => {
-  const card = document.createElement('div');
-  card.className = `employee-card ${themes[i]}`;
-  card.innerHTML = `
-    <div class="employee-photo-container">
-      <img src="${emp.p}" alt="صورة ${emp.n}" class="employee-photo" crossorigin="anonymous">
-    </div>
-    <h3 class="employee-name">${emp.n}</h3>
-    <p class="employee-title">${emp.d}</p>
-    <div class="badges-container"><span class="badge">${badges[i]}</span></div>
-    <button class="download-btn" title="تنزيل البطاقة"><i class="fa-solid fa-download"></i></button>
-  `;
-  container.appendChild(card);
-});
+      employees.forEach((emp, i) => {
+        const card = document.createElement('div');
+        card.className = `employee-card ${themes[i] || 'card-theme-1'}`; // Ensure fallback if theme array is short
+        card.innerHTML = `
+          <div class="employee-photo-container">
+            <img src="${emp.p}" alt="صورة ${emp.n}" class="employee-photo" crossorigin="anonymous">
+          </div>
+          <h3 class="employee-name">${emp.n}</h3>
+          <p class="employee-title">${emp.d}</p>
+          <div class="badges-container"><span class="badge">${badges[i]}</span></div>
+          <button class="download-btn" title="تنزيل البطاقة"><i class="fa-solid fa-download"></i></button>
+        `;
+        container.appendChild(card);
+      });
+
       document.querySelectorAll('.download-btn').forEach((btn) => {
         btn.addEventListener('click', async (e) => {
           e.stopPropagation();
           const card = btn.closest('.employee-card');
           const prev = btn.style.visibility;
           btn.style.visibility = 'hidden';
+          
           try {
+            // backgroundColor: null ensures transparent background where possible, adapting well to our new solid #fff base
             const canvas = await html2canvas(card, { backgroundColor: null, scale: 2, useCORS: true });
             const a = document.createElement('a');
             a.download = 'employee-card.png';
             a.href = canvas.toDataURL('image/png');
             a.click();
-          } catch (err) { console.error(err); }
+          } catch (err) { 
+            console.error(err); 
+          }
+          
           btn.style.visibility = prev || 'visible';
         });
       });
