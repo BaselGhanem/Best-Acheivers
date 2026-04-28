@@ -564,28 +564,61 @@
         container.appendChild(card);
       });
 
-      document.querySelectorAll('.download-btn').forEach((btn) => {
+document.querySelectorAll('.download-btn').forEach((btn) => {
         btn.addEventListener('click', async (e) => {
           e.stopPropagation();
-          const card = btn.closest('.employee-card');
-          const prev = btn.style.visibility;
-          btn.style.visibility = 'hidden';
+          const originalCard = btn.closest('.employee-card');
           
+          // 1. إنشاء حاوية (خلفية موبايل 9:16) خارج الشاشة
+          const wallpaper = document.createElement('div');
+          Object.assign(wallpaper.style, {
+            position: 'fixed',
+            left: '-9999px',
+            top: '0',
+            width: '540px',
+            height: '960px',
+            background: 'linear-gradient(135deg, #EAF7F5, #FFFFFF)', // خلفية جذابة للموبايل
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          });
+
+          // 2. نسخ البطاقة لمنع تمددها وتشويه أبعادها
+          const cardClone = originalCard.cloneNode(true);
+          const cloneBtn = cardClone.querySelector('.download-btn');
+          if (cloneBtn) cloneBtn.remove(); // إزالة أيقونة التنزيل من الصورة النهائية
+          
+          Object.assign(cardClone.style, {
+            width: '400px', // تثبيت عرض البطاقة
+            transform: 'none',
+            margin: '0',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+          });
+
+          wallpaper.appendChild(cardClone);
+          document.body.appendChild(wallpaper);
+
           try {
-            // backgroundColor: null ensures transparent background where possible, adapting well to our new solid #fff base
-            const canvas = await html2canvas(card, { backgroundColor: null, scale: 2, useCORS: true });
+            // 3. التقاط الصورة بجودة عالية لتصبح 1080x1920
+            const canvas = await html2canvas(wallpaper, { 
+              backgroundColor: '#ffffff', // حل نهائي لمشكلة الخلفية السوداء
+              scale: 2, 
+              useCORS: true,
+              allowTaint: true
+            });
+            
             const a = document.createElement('a');
             a.download = 'employee-card.png';
             a.href = canvas.toDataURL('image/png');
             a.click();
           } catch (err) { 
             console.error(err); 
+          } finally {
+            // تنظيف الصفحة بعد الانتهاء
+            document.body.removeChild(wallpaper);
           }
-          
-          btn.style.visibility = prev || 'visible';
         });
       });
-    });
-  </script>
+      </script>
 </body>
 </html>
