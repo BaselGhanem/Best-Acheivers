@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- استخدام مكتبة html-to-image لدعم اللغة العربية بشكل مثالي محلياً -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
   
   <style>
@@ -220,7 +221,7 @@
       gap: 2.5rem;
     }
 
-    /* CARD REDESIGN - The "Impressive" Factor */
+    /* CARD REDESIGN */
     .employee-card {
       background: var(--card-bg);
       border-radius: 30px;
@@ -256,7 +257,7 @@
 
     .employee-card:hover::before { opacity: 1; }
 
-    /* Avatar Container with Animated Ring */
+    /* Avatar Container */
     .avatar-wrapper {
       position: relative;
       width: 130px;
@@ -328,7 +329,7 @@
 
     .badge i { font-size: 0.9rem; }
 
-    /* New Download Button - Prominent & Beautiful */
+    /* Download Button */
     .action-download-btn {
       width: 100%;
       padding: 1rem;
@@ -546,7 +547,6 @@
       for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
       const palette = palettes[Math.abs(hash) % palettes.length];
 
-      // Premium Gradient Background
       const gradBg = ctx.createLinearGradient(0, 0, size, size);
       gradBg.addColorStop(0, palette.bg);
       gradBg.addColorStop(1, '#00000022');
@@ -558,7 +558,6 @@
       ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
       ctx.fill();
 
-      // Inner Gold Ring
       ctx.strokeStyle = 'rgba(212, 175, 55, 0.4)';
       ctx.lineWidth = 4;
       ctx.beginPath();
@@ -652,7 +651,6 @@
         btn.addEventListener('click', async (e) => {
           e.stopPropagation();
           
-          // Button loading state
           const originalText = btn.innerHTML;
           btn.innerHTML = `جاري التجهيز... <i class="fa-solid fa-spinner fa-spin"></i>`;
           btn.style.pointerEvents = 'none';
@@ -663,9 +661,8 @@
           const badgeText = card.querySelector('.badge').textContent.trim();
           const avatarSrc = card.querySelector('.employee-avatar').src;
 
-          // Build Off-Screen High-Res Premium Design (1080x1920 logical proportions)
           const wallpaper = document.createElement('div');
-wallpaper.setAttribute('dir', 'rtl');
+          wallpaper.setAttribute('dir', 'rtl');
           Object.assign(wallpaper.style, {
             position:   'fixed',
             left:       '-9999px',
@@ -682,9 +679,7 @@ wallpaper.setAttribute('dir', 'rtl');
             overflow:   'hidden'
           });
 
-          // Premium Inner Content Design
           wallpaper.innerHTML = `
-            <!-- Decorative Elements -->
             <div style="position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);border-radius:50%;"></div>
             <div style="position:absolute;bottom:-300px;left:-200px;width:800px;height:800px;background:radial-gradient(circle, rgba(0,166,147,0.2) 0%, transparent 70%);border-radius:50%;"></div>
             
@@ -701,14 +696,12 @@ wallpaper.setAttribute('dir', 'rtl');
               position: relative;
               z-index: 10;
             ">
-              <!-- Top Gold Accent -->
               <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:8px;background:linear-gradient(90deg, transparent, #D4AF37, transparent);"></div>
 
               <div style="margin-bottom:60px;">
-                 <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" style="height:90px; filter: brightness(0) invert(1);" crossorigin="anonymous">
+                 <h2 style="color: #fff; font-size: 3.2rem; font-weight: 800; margin: 0; opacity: 0.9;">دار الدواء</h2>
               </div>
 
-              <!-- Avatar Area -->
               <div style="position:relative; width:340px; height:340px; margin:0 auto 50px;">
                 <div style="position:absolute; inset:-15px; border-radius:50%; background:linear-gradient(135deg, #00A693, #D4AF37); opacity:0.8; filter:blur(10px);"></div>
                 <img src="${avatarSrc}" style="
@@ -744,11 +737,10 @@ wallpaper.setAttribute('dir', 'rtl');
 
           document.body.appendChild(wallpaper);
 
-         try {
-            // استخدام المكتبة الجديدة التي تدعم اللغة العربية 100%
+          try {
             const dataUrl = await htmlToImage.toPng(wallpaper, {
               backgroundColor: '#042320',
-              pixelRatio: 1, // يعادل دقة الصورة
+              pixelRatio: 1,
             });
 
             const a = document.createElement('a');
@@ -767,7 +759,7 @@ wallpaper.setAttribute('dir', 'rtl');
           }
         });
       });
-    });
+    }); // نهاية إغلاق الدالة DOMContentLoaded
 
     // ============================================================
     //  UTILITIES
