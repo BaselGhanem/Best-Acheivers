@@ -9,22 +9,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
   
   <style>
     :root {
       --persian-green: #00A693;
       --persian-green-dark: #007D6E;
       --persian-green-light: #4DB6AC;
-      --persian-green-soft: #EAF7F5;
-      --teal-accent: #00796B;
-      --deep-teal: #082E29;
+      --gold-accent: #D4AF37;
+      --gold-light: #FBF5E6;
+      --deep-teal: #042320;
       --white: #FFFFFF;
-      --off-white: #F8FAF9;
-      --text-dark: #1A1D1C;
-      --text-muted: #64748B;
+      --off-white: #F4F7F6;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-dark: #121A18;
+      --text-muted: #526663;
       --font-primary: 'Almarai', 'Inter', sans-serif;
-      --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,30 +38,37 @@
       line-height: 1.6;
     }
 
+    /* Premium Animated Background */
     .background-pattern {
       position: fixed;
       inset: 0;
       background: 
-        radial-gradient(circle at 10% 0%, rgba(0,166,147,0.06) 0%, transparent 40%),
-        radial-gradient(circle at 90% 100%, rgba(0,121,107,0.06) 0%, transparent 40%);
+        radial-gradient(circle at 15% 50%, rgba(0, 166, 147, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
       z-index: -1;
+      animation: ambientPulse 15s ease-in-out infinite alternate;
     }
 
-    /* NAV */
+    @keyframes ambientPulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    /* NAV - Premium Glassmorphism */
     .modern-nav {
       position: fixed;
-      top: 20px;
+      top: 24px;
       left: 50%;
       transform: translateX(-50%);
-      width: 95%;
-      max-width: 1200px;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.7);
+      width: 90%;
+      max-width: 1100px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       border-radius: 100px;
       z-index: 1000;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
       transition: var(--transition-smooth);
     }
 
@@ -68,357 +76,392 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 2rem;
+      padding: 0.6rem 1.5rem;
     }
 
-    .nav-logo img { height: 36px; object-fit: contain; }
+    .nav-logo img { height: 42px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05)); }
 
-    .nav-menu { display: flex; gap: 0.4rem; }
+    .nav-menu { display: flex; gap: 0.5rem; }
 
     .nav-link {
       text-decoration: none;
       color: var(--text-muted);
       font-weight: 700;
-      font-size: 0.9rem;
-      padding: 0.55rem 1.1rem;
+      font-size: 0.95rem;
+      padding: 0.6rem 1.4rem;
       border-radius: 100px;
       transition: var(--transition-smooth);
       white-space: nowrap;
+      position: relative;
+      overflow: hidden;
     }
 
-    .nav-link:hover { color: var(--deep-teal); background: rgba(0,166,147,0.08); }
-    .nav-link.active { background: var(--text-dark); color: var(--white); }
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--persian-green);
+      opacity: 0;
+      transition: var(--transition-smooth);
+      z-index: -1;
+      border-radius: 100px;
+    }
 
-    /* HERO */
+    .nav-link:hover { color: var(--persian-green-dark); background: rgba(0, 166, 147, 0.05); }
+    .nav-link.active { color: var(--white); box-shadow: 0 4px 15px rgba(0, 166, 147, 0.3); }
+    .nav-link.active::before { opacity: 1; }
+
+    /* HERO - Grand & Inspiring */
     .hero-section {
-      padding: 170px 20px 70px;
+      padding: 180px 20px 80px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: var(--white);
-      border: 1px solid rgba(0,166,147,0.25);
-      color: var(--persian-green);
-      padding: 0.45rem 1.4rem;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, var(--gold-light), #fff);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: #9C7D1C;
+      padding: 0.5rem 1.8rem;
       border-radius: 100px;
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       margin-bottom: 1.5rem;
-      box-shadow: 0 8px 24px rgba(0,166,147,0.1);
-      letter-spacing: 0.5px;
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
       text-transform: uppercase;
       animation: fadeInDown 0.8s ease-out both;
     }
 
+    .hero-badge i { color: var(--gold-accent); font-size: 1.1rem; }
+
     .hero-title {
-      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-size: clamp(3.2rem, 8vw, 6rem);
       font-weight: 800;
       color: var(--deep-teal);
       line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.2rem;
       animation: fadeInUp 1s ease-out 0.2s both;
     }
 
     .hero-title .accent {
-      background: linear-gradient(135deg, var(--persian-green), #00D4B2);
+      background: linear-gradient(135deg, var(--persian-green), var(--persian-green-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      position: relative;
     }
 
     .hero-tagline {
-      font-size: clamp(1rem, 2vw, 1.35rem);
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
       color: var(--text-muted);
-      font-weight: 400;
-      max-width: 580px;
+      font-weight: 500;
+      max-width: 650px;
       animation: fadeInUp 1s ease-out 0.4s both;
+      line-height: 1.8;
     }
 
-    /* MAIN */
+    /* MAIN CONTENT */
     .main-content {
-      max-width: 1320px;
+      max-width: 1400px;
       margin: auto;
-      padding: 0 1.5rem 6rem;
+      padding: 0 2rem 8rem;
     }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-      animation: fadeInUp 1s ease-out 0.6s both;
-    }
-
-    .section-title {
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 0.4rem;
-    }
-
-    .section-subtitle { color: var(--text-muted); font-size: 1rem; }
-
-    /* COUNTER STRIP */
+    /* STATS STRIP - Premium Cards */
     .counter-strip {
       display: flex;
       justify-content: center;
-      gap: 3rem;
-      margin-bottom: 3rem;
-      animation: fadeInUp 1s ease-out 0.7s both;
+      gap: 2rem;
+      margin-bottom: 4rem;
+      animation: fadeInUp 1s ease-out 0.6s both;
     }
 
-    .counter-item { text-align: center; }
-    .counter-number {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--persian-green);
-      display: block;
+    .counter-item {
+      background: var(--white);
+      padding: 1.5rem 3rem;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,0.02);
+      text-align: center;
+      min-width: 200px;
+      position: relative;
+      overflow: hidden;
     }
-    .counter-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+
+    .counter-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--persian-green);
+      border-radius: 4px 0 0 4px;
+    }
+
+    .counter-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--deep-teal);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    
+    .counter-label { font-size: 0.95rem; color: var(--text-muted); font-weight: 700; }
 
     /* GRID */
     .employees-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2.5rem;
     }
 
-    /* CARD */
+    /* CARD REDESIGN - The "Impressive" Factor */
     .employee-card {
-      background: var(--white);
-      border-radius: 24px;
-      padding: 2.5rem 1.5rem 2rem;
+      background: var(--card-bg);
+      border-radius: 30px;
+      padding: 2.5rem 2rem;
       text-align: center;
       position: relative;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.02);
-      border: 1px solid rgba(0,0,0,0.04);
-      transition: var(--transition-smooth);
-      overflow: hidden;
-      animation: scaleIn 0.7s cubic-bezier(0.16,1,0.3,1) both;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.03), inset 0 2px 0 rgba(255,255,255,1);
+      border: 1px solid rgba(0,166,147,0.05);
+      transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: scaleIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      isolation: isolate;
     }
 
-    /* Top color bar */
     .employee-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 5px;
-      background: var(--card-accent, var(--persian-green));
-      border-radius: 24px 24px 0 0;
-    }
-
-    /* Soft shimmer on hover */
-    .employee-card::after {
-      content: '';
-      position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(0,166,147,0.05), transparent 70%);
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(0,166,147,0.03) 0%, transparent 100%);
       opacity: 0;
       transition: var(--transition-smooth);
-      pointer-events: none;
+      z-index: -1;
     }
 
     .employee-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 24px 48px rgba(0,166,147,0.1), 0 4px 12px rgba(0,0,0,0.03);
-      border-color: rgba(0,166,147,0.12);
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(0,166,147,0.08), 0 10px 20px rgba(0,0,0,0.02);
+      border-color: rgba(0,166,147,0.2);
     }
 
-    .employee-card:hover::after { opacity: 1; }
+    .employee-card:hover::before { opacity: 1; }
 
-    /* AVATAR — generated by canvas, no external dependency */
-    .employee-avatar {
-      width: 110px;
-      height: 110px;
+    /* Avatar Container with Animated Ring */
+    .avatar-wrapper {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -5px;
       border-radius: 50%;
-      margin: 0 auto 1.25rem;
-      display: block;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      background: conic-gradient(from 0deg, var(--persian-green), var(--gold-accent), var(--persian-green-light), var(--persian-green));
+      animation: spin 4s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+
+    .employee-card:hover .avatar-ring { opacity: 1; }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    .employee-avatar {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       border: 4px solid var(--white);
-      outline: 2px solid rgba(0,166,147,0.15);
+      background: var(--white);
+      z-index: 2;
       transition: var(--transition-smooth);
     }
 
-    .employee-card:hover .employee-avatar {
-      transform: scale(1.06);
-      box-shadow: 0 14px 32px rgba(0,166,147,0.2);
-    }
+    .employee-card:hover .employee-avatar { transform: scale(0.96); }
 
     .employee-name {
-      font-size: 1.15rem;
+      font-size: 1.3rem;
       font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 0.3rem;
+      color: var(--deep-teal);
+      margin-bottom: 0.4rem;
       letter-spacing: -0.01em;
     }
 
     .employee-dept {
-      font-size: 0.88rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
       font-weight: 600;
-      margin-bottom: 1.2rem;
-    }
-
-    .employee-id {
-      font-size: 0.78rem;
-      color: rgba(100,116,139,0.7);
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      margin-bottom: 1rem;
-      direction: ltr;
-      display: inline-block;
+      margin-bottom: 1.5rem;
+      background: rgba(0,0,0,0.03);
+      padding: 0.3rem 1rem;
+      border-radius: 100px;
     }
 
     .badge {
-      display: inline-block;
-      background: var(--persian-green-soft);
-      color: var(--persian-green-dark);
-      font-weight: 700;
-      padding: 0.45rem 1rem;
-      border-radius: 100px;
-      font-size: 0.82rem;
-      border: 1px solid rgba(0,166,147,0.12);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--gold-light);
+      color: #9C7D1C;
+      font-weight: 800;
+      padding: 0.5rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      margin-bottom: 2rem;
     }
 
-    /* Download button */
-    .download-btn {
-      position: absolute;
-      top: 18px;
-      left: 18px;
+    .badge i { font-size: 0.9rem; }
+
+    /* New Download Button - Prominent & Beautiful */
+    .action-download-btn {
+      width: 100%;
+      padding: 1rem;
       border: none;
-      background: var(--white);
-      color: var(--text-muted);
-      border-radius: 50%;
-      width: 38px;
-      height: 38px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--persian-green), var(--persian-green-dark));
+      color: var(--white);
+      font-family: var(--font-primary);
+      font-weight: 700;
+      font-size: 1rem;
       cursor: pointer;
-      transition: var(--transition-smooth);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
-      opacity: 0;
-      transform: scale(0.8);
-      z-index: 10;
+      gap: 0.6rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 20px rgba(0,166,147,0.25);
+      position: relative;
+      overflow: hidden;
     }
 
-    .employee-card:hover .download-btn {
-      opacity: 1;
-      transform: scale(1);
-      color: var(--persian-green);
+    .action-download-btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-20deg);
+      transition: 0.6s;
     }
 
-    .download-btn:hover {
-      background: var(--persian-green) !important;
-      color: var(--white) !important;
-      transform: scale(1.1) !important;
-      box-shadow: 0 6px 20px rgba(0,166,147,0.35);
+    .action-download-btn:hover {
+      box-shadow: 0 12px 25px rgba(0,166,147,0.4);
+      transform: translateY(-3px);
     }
+
+    .action-download-btn:hover::after { left: 150%; }
+
+    .action-download-btn i { transition: transform 0.3s ease; }
+    .action-download-btn:hover i { transform: translateY(3px); }
 
     /* Stagger delays */
-    .employee-card:nth-child(1)  { animation-delay: 0.05s; }
-    .employee-card:nth-child(2)  { animation-delay: 0.10s; }
-    .employee-card:nth-child(3)  { animation-delay: 0.15s; }
-    .employee-card:nth-child(4)  { animation-delay: 0.20s; }
-    .employee-card:nth-child(5)  { animation-delay: 0.25s; }
-    .employee-card:nth-child(6)  { animation-delay: 0.30s; }
-    .employee-card:nth-child(7)  { animation-delay: 0.35s; }
-    .employee-card:nth-child(8)  { animation-delay: 0.40s; }
-    .employee-card:nth-child(9)  { animation-delay: 0.45s; }
-    .employee-card:nth-child(10) { animation-delay: 0.50s; }
-    .employee-card:nth-child(11) { animation-delay: 0.55s; }
-    .employee-card:nth-child(12) { animation-delay: 0.60s; }
-    .employee-card:nth-child(13) { animation-delay: 0.65s; }
-    .employee-card:nth-child(14) { animation-delay: 0.70s; }
-    .employee-card:nth-child(15) { animation-delay: 0.75s; }
-    .employee-card:nth-child(16) { animation-delay: 0.80s; }
-    .employee-card:nth-child(17) { animation-delay: 0.85s; }
-    .employee-card:nth-child(18) { animation-delay: 0.90s; }
-    .employee-card:nth-child(19) { animation-delay: 0.95s; }
-    .employee-card:nth-child(20) { animation-delay: 1.00s; }
-    .employee-card:nth-child(21) { animation-delay: 1.05s; }
-
-    /* Card accent colors */
-    .accent-1 { --card-accent: #00A693; }
-    .accent-2 { --card-accent: #00897B; }
-    .accent-3 { --card-accent: #00796B; }
-    .accent-4 { --card-accent: #006B61; }
+    .employee-card:nth-child(1)  { animation-delay: 0.10s; }
+    .employee-card:nth-child(2)  { animation-delay: 0.20s; }
+    .employee-card:nth-child(3)  { animation-delay: 0.30s; }
+    .employee-card:nth-child(4)  { animation-delay: 0.40s; }
+    .employee-card:nth-child(5)  { animation-delay: 0.50s; }
+    .employee-card:nth-child(6)  { animation-delay: 0.60s; }
 
     /* FOOTER */
     .site-footer {
-      padding: 3rem 0 2rem;
+      padding: 4rem 0 3rem;
       text-align: center;
+      position: relative;
+    }
+
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 100px; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(0,166,147,0.3), transparent);
     }
 
     .site-footer img {
-      height: 32px;
-      opacity: 0.45;
+      height: 40px;
+      opacity: 0.6;
       filter: grayscale(100%);
-      margin-bottom: 0.8rem;
+      margin-bottom: 1.2rem;
       transition: var(--transition-smooth);
     }
 
-    .site-footer:hover img { opacity: 0.9; filter: grayscale(0%); }
-    .site-footer p { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; }
+    .site-footer:hover img { opacity: 1; filter: grayscale(0%); transform: scale(1.05); }
+    .site-footer p { color: var(--text-muted); font-size: 0.95rem; font-weight: 600; }
 
     /* TOAST */
     .toast {
       position: fixed;
-      bottom: 2rem;
+      bottom: 2.5rem;
       left: 50%;
-      transform: translateX(-50%) translateY(20px);
+      transform: translateX(-50%) translateY(30px) scale(0.9);
       background: var(--deep-teal);
       color: var(--white);
-      padding: 0.75rem 2rem;
+      padding: 1rem 2.5rem;
       border-radius: 100px;
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-weight: 800;
+      font-size: 1rem;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.4s ease;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       z-index: 9999;
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
+
+    .toast i { color: var(--gold-accent); font-size: 1.2rem; }
 
     .toast.show {
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      transform: translateX(-50%) translateY(0) scale(1);
     }
 
     /* ANIMATIONS */
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(28px); }
+      from { opacity: 0; transform: translateY(40px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-18px); }
+      from { opacity: 0; transform: translateY(-30px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.94) translateY(16px); }
+      from { opacity: 0; transform: scale(0.9) translateY(30px); }
       to   { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     /* RESPONSIVE */
     @media (max-width: 992px) {
       .employees-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-title { font-size: 3.5rem; }
     }
 
     @media (max-width: 768px) {
-      .modern-nav { top: 12px; width: calc(100% - 24px); border-radius: 20px; }
-      .nav-container { flex-direction: column; padding: 0.9rem; gap: 0.8rem; }
-      .nav-menu { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .modern-nav { top: 15px; width: calc(100% - 30px); border-radius: 24px; }
+      .nav-container { flex-direction: column; padding: 1rem; gap: 1rem; }
+      .nav-menu { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 5px; }
       .nav-menu::-webkit-scrollbar { display: none; }
       .nav-menu { -ms-overflow-style: none; scrollbar-width: none; }
-      .hero-section { padding-top: 190px; }
-      .employees-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-      .download-btn { opacity: 1; transform: scale(1); }
-      .counter-strip { gap: 1.5rem; }
+      .hero-section { padding-top: 200px; }
+      .employees-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .counter-strip { flex-direction: column; gap: 1rem; }
     }
   </style>
 </head>
@@ -444,21 +487,16 @@
   <!-- HERO -->
   <header class="hero-section">
     <div class="hero-badge">
-      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-crown"></i>
       May 2026
     </div>
-    <h1 class="hero-title">موظف <span class="accent">الشهر</span></h1>
-    <p class="hero-tagline">تقديراً للتميز والإنجازات الاستثنائية التي ترتقي بنا نحو الأفضل</p>
+    <h1 class="hero-title">نجوم <span class="accent">الإنجاز</span></h1>
+    <p class="hero-tagline">نحتفي اليوم بمن صنعوا الفارق، بجهودهم الاستثنائية وإبداعهم الذي يرتقي بطموحات دار الدواء نحو القمة.</p>
   </header>
 
   <!-- MAIN -->
   <main class="main-content">
     <section>
-      <div class="section-header">
-        <h2 class="section-title">المكرمون هذا الشهر</h2>
-        <p class="section-subtitle">نُقدر جهودكم المتميزة التي تساهم في تقدمنا المستمر</p>
-      </div>
-
       <!-- Stats Strip -->
       <div class="counter-strip">
         <div class="counter-item">
@@ -478,59 +516,60 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" alt="دار الدواء">
-    <p>جميع الحقوق محفوظة © 2026 دار الدواء</p>
+    <p>جميع الحقوق محفوظة © 2026 مجموعة دار الدواء</p>
   </footer>
 
   <!-- TOAST -->
-  <div class="toast" id="toast">✅ تم تنزيل البطاقة بنجاح</div>
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-msg">تم تنزيل البطاقة بنجاح</span>
+  </div>
 
   <script>
     // ============================================================
     //  HELPER: Generate avatar as DataURL using Canvas
-    //  100% local — no external requests — works everywhere
     // ============================================================
-    function generateAvatarDataURL(name, size = 200) {
+    function generateAvatarDataURL(name, size = 250) {
       const canvas = document.createElement('canvas');
       canvas.width  = size;
       canvas.height = size;
       const ctx = canvas.getContext('2d');
 
-      // Palette of teal/green shades
       const palettes = [
         { bg: '#00A693', fg: '#ffffff' },
-        { bg: '#00897B', fg: '#ffffff' },
-        { bg: '#006B61', fg: '#ffffff' },
-        { bg: '#004D44', fg: '#e0f7f4' },
-        { bg: '#1A6B62', fg: '#ffffff' },
-        { bg: '#00796B', fg: '#ffffff' },
+        { bg: '#042320', fg: '#D4AF37' },
+        { bg: '#007D6E', fg: '#ffffff' },
+        { bg: '#1A6B62', fg: '#FBF5E6' },
       ];
 
-      // Pick colour deterministically from name
       let hash = 0;
       for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
       const palette = palettes[Math.abs(hash) % palettes.length];
 
-      // Background circle
+      // Premium Gradient Background
+      const gradBg = ctx.createLinearGradient(0, 0, size, size);
+      gradBg.addColorStop(0, palette.bg);
+      gradBg.addColorStop(1, '#00000022');
       ctx.fillStyle = palette.bg;
+      ctx.fillRect(0, 0, size, size);
+      
+      ctx.fillStyle = gradBg;
       ctx.beginPath();
       ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
       ctx.fill();
 
-      // Subtle inner highlight
-      const grad = ctx.createRadialGradient(size * 0.35, size * 0.3, 0, size / 2, size / 2, size / 2);
-      grad.addColorStop(0, 'rgba(255,255,255,0.18)');
-      grad.addColorStop(1, 'rgba(0,0,0,0.12)');
-      ctx.fillStyle = grad;
+      // Inner Gold Ring
+      ctx.strokeStyle = 'rgba(212, 175, 55, 0.4)';
+      ctx.lineWidth = 4;
       ctx.beginPath();
-      ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.arc(size / 2, size / 2, size / 2 - 10, 0, Math.PI * 2);
+      ctx.stroke();
 
-      // Initials — grab first 2 Arabic words' first letters
       const words  = name.trim().split(/\s+/);
       const initials = (words[0]?.[0] ?? '') + (words[1]?.[0] ?? '');
 
       ctx.fillStyle = palette.fg;
-      ctx.font = `bold ${Math.round(size * 0.36)}px Almarai, Arial`;
+      ctx.font = `bold ${Math.round(size * 0.35)}px Almarai, sans-serif`;
       ctx.textAlign    = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(initials, size / 2, size / 2 + size * 0.04);
@@ -542,7 +581,7 @@
     //  DATA
     // ============================================================
     const employees = [
-      { name: "ايهم علي سالم الصلاج",          department: "الهندسة",                      photo: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3809.png" },
+      { name: "ايهم علي سالم الصلاج",         department: "الهندسة",                      photo: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3809.png" },
       { name: "بهاء بسام محمد النخيلي",         department: "عمليات الجودة",                photo: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2450.png" },
       { name: "حسين حازم نايف ابو غزالة",       department: "البحث والتطوير",               photo: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3959.png" },
       { name: "حسين محمد حسين داوود",           department: "البحث والتطوير",               photo: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/4041.png" },
@@ -566,13 +605,9 @@
     ];
 
     const badges = [
-      "روح الفريق","اصرار وتميز","عطاء متواصل","ملهم","تعاون مثمر",
-      "ابداع متجدد","التزام عالي","تفان في العمل","شغف بالنجاح","مبادرة دائمة",
-      "طاقة ايجابية","قيادة ملهمة","جهد استثنائي","روح المبادرة","اداء متميز",
-      "همة عالية","روح التعاون","عزيمة قوية","ابداع مستمر","عمل متقن","اصرار على النجاح"
+      "نجم الفريق","أداء استثنائي","شعلة طاقة","بصمة إبداع","تميز مستدام",
+      "روح المبادرة","إنجاز مبهر","مثال يحتذى","عطاء بلا حدود","تفكير مبتكر"
     ];
-
-    const accentClasses = ['accent-1','accent-2','accent-3','accent-4'];
 
     // ============================================================
     //  RENDER CARDS
@@ -580,28 +615,30 @@
     document.addEventListener('DOMContentLoaded', () => {
       const container = document.getElementById('employees-container');
 
-      // Update counters
       const uniqueDepts = new Set(employees.map(e => e.department)).size;
       animateCounter('total-count', employees.length);
       animateCounter('dept-count', uniqueDepts);
 
       employees.forEach((emp, i) => {
-        const fallbackSrc = generateAvatarDataURL(emp.name, 200);
-
+        const fallbackSrc = generateAvatarDataURL(emp.name, 250);
         const card = document.createElement('div');
-        card.className = `employee-card ${accentClasses[i % accentClasses.length]}`;
+        card.className = `employee-card`;
 
         card.innerHTML = `
-          <img src="${emp.photo}" 
-               class="employee-avatar" 
-               alt="صورة ${emp.name}"
-               crossorigin="anonymous"
-               onerror="this.onerror=null;this.src='${fallbackSrc}'">
+          <div class="avatar-wrapper">
+            <div class="avatar-ring"></div>
+            <img src="${emp.photo}" 
+                 class="employee-avatar" 
+                 alt="${emp.name}"
+                 crossorigin="anonymous"
+                 onerror="this.onerror=null;this.src='${fallbackSrc}'">
+          </div>
           <h3 class="employee-name">${emp.name}</h3>
           <p class="employee-dept">${emp.department}</p>
-          <div><span class="badge">${badges[i % badges.length]}</span></div>
-          <button class="download-btn" title="تنزيل البطاقة" aria-label="تنزيل">
-            <i class="fa-solid fa-arrow-down-to-line"></i>
+          <div class="badge"><i class="fa-solid fa-award"></i> ${badges[i % badges.length]}</div>
+          
+          <button class="action-download-btn" title="تنزيل تهنئة">
+            تنزيل البطاقة <i class="fa-solid fa-arrow-down"></i>
           </button>
         `;
 
@@ -609,11 +646,16 @@
       });
 
       // ============================================================
-      //  DOWNLOAD — uses only local canvas data, no CORS issues
+      //  PREMIUM WALLPAPER DOWNLOAD LOGIC
       // ============================================================
-      document.querySelectorAll('.download-btn').forEach((btn) => {
+      document.querySelectorAll('.action-download-btn').forEach((btn) => {
         btn.addEventListener('click', async (e) => {
           e.stopPropagation();
+          
+          // Button loading state
+          const originalText = btn.innerHTML;
+          btn.innerHTML = `جاري التجهيز... <i class="fa-solid fa-spinner fa-spin"></i>`;
+          btn.style.pointerEvents = 'none';
 
           const card = btn.closest('.employee-card');
           const name = card.querySelector('.employee-name').textContent.trim();
@@ -621,97 +663,107 @@
           const badgeText = card.querySelector('.badge').textContent.trim();
           const avatarSrc = card.querySelector('.employee-avatar').src;
 
-          // Build an off-screen 9:16 wallpaper (1080×1920 at scale 2 → 540×960 CSS)
+          // Build Off-Screen High-Res Premium Design (1080x1920 logical proportions)
           const wallpaper = document.createElement('div');
+wallpaper.setAttribute('dir', 'rtl');
           Object.assign(wallpaper.style, {
             position:   'fixed',
             left:       '-9999px',
             top:        '0',
-            width:      '540px',
-            height:     '960px',
-            background: 'linear-gradient(145deg, #EAF7F5 0%, #FFFFFF 60%, #E0F5F2 100%)',
+            width:      '1080px',
+            height:     '1920px',
+            background: 'linear-gradient(135deg, #042320 0%, #004D44 100%)',
             display:    'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             fontFamily: "'Almarai', sans-serif",
             direction:  'rtl',
-            gap:        '0',
+            overflow:   'hidden'
           });
 
+          // Premium Inner Content Design
           wallpaper.innerHTML = `
+            <!-- Decorative Elements -->
+            <div style="position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);border-radius:50%;"></div>
+            <div style="position:absolute;bottom:-300px;left:-200px;width:800px;height:800px;background:radial-gradient(circle, rgba(0,166,147,0.2) 0%, transparent 70%);border-radius:50%;"></div>
+            
             <div style="
-              background:#fff;
-              border-radius:32px;
-              width:400px;
-              padding:48px 32px 40px;
-              text-align:center;
-              box-shadow:0 20px 60px rgba(0,166,147,0.12);
-              border:1px solid rgba(0,166,147,0.1);
-              position:relative;
-              overflow:hidden;
+              background: rgba(255,255,255,0.03);
+              backdrop-filter: blur(40px);
+              -webkit-backdrop-filter: blur(40px);
+              border: 1px solid rgba(255,255,255,0.1);
+              border-radius: 60px;
+              width: 860px;
+              padding: 100px 60px;
+              text-align: center;
+              box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+              position: relative;
+              z-index: 10;
             ">
-              <div style="position:absolute;top:0;left:0;right:0;height:6px;background:#00A693;border-radius:32px 32px 0 0;"></div>
+              <!-- Top Gold Accent -->
+              <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:8px;background:linear-gradient(90deg, transparent, #D4AF37, transparent);"></div>
 
-              <img src="${avatarSrc}" style="
-                width:120px;height:120px;border-radius:50%;
-                display:block;margin:0 auto 20px;
-                border:4px solid #fff;
-                box-shadow:0 8px 24px rgba(0,166,147,0.25);
-              ">
+              <div style="margin-bottom:60px;">
+                 <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" style="height:90px; filter: brightness(0) invert(1);" crossorigin="anonymous">
+              </div>
 
-              <div style="font-size:1.5rem;font-weight:800;color:#082E29;margin-bottom:6px;line-height:1.3;">${name}</div>
-              <div style="font-size:1rem;color:#64748B;font-weight:600;margin-bottom:20px;">${dept}</div>
+              <!-- Avatar Area -->
+              <div style="position:relative; width:340px; height:340px; margin:0 auto 50px;">
+                <div style="position:absolute; inset:-15px; border-radius:50%; background:linear-gradient(135deg, #00A693, #D4AF37); opacity:0.8; filter:blur(10px);"></div>
+                <img src="${avatarSrc}" style="
+                  position:relative;
+                  width:340px;height:340px;border-radius:50%;
+                  display:block;
+                  border:8px solid #042320;
+                  box-shadow:0 20px 50px rgba(0,0,0,0.6);
+                  object-fit:cover;
+                " crossorigin="anonymous">
+              </div>
+
+              <div style="font-size:3.5rem;font-weight:800;color:#FFFFFF;margin-bottom:20px;letter-spacing:-0.02em;">${name}</div>
+              <div style="font-size:1.8rem;color:#4DB6AC;font-weight:600;margin-bottom:40px;">${dept}</div>
 
               <div style="
                 display:inline-block;
-                background:#EAF7F5;color:#007D6E;
-                font-weight:700;font-size:0.95rem;
-                padding:8px 20px;border-radius:100px;
-                border:1px solid rgba(0,166,147,0.15);
-                margin-bottom:28px;
+                background:linear-gradient(135deg, #D4AF37, #9C7D1C);
+                color:#FFFFFF;
+                font-weight:800;font-size:1.6rem;
+                padding:15px 50px;border-radius:100px;
+                box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+                margin-bottom:60px;
               ">${badgeText}</div>
 
-              <div style="
-                background:linear-gradient(135deg,#00A693,#007D6E);
-                border-radius:16px;
-                padding:16px;
-                color:#fff;
-              ">
-                <div style="font-size:0.8rem;opacity:0.85;margin-bottom:4px;">موظف الشهر</div>
-                <div style="font-size:1.1rem;font-weight:800;">May 2026</div>
-              </div>
+              <div style="width:100px;height:2px;background:rgba(255,255,255,0.2);margin:0 auto 40px;"></div>
 
-              <div style="margin-top:24px;opacity:0.4;">
-                <img src="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png"
-                     style="height:28px;filter:grayscale(100%);" crossorigin="anonymous">
+              <div style="font-size:1.5rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:4px;">
+                موظف الشهر • May 2026
               </div>
             </div>
           `;
 
           document.body.appendChild(wallpaper);
 
-          try {
-            const canvas = await html2canvas(wallpaper, {
-              backgroundColor: null,
-              scale: 2,
-              useCORS: true,
-              allowTaint: true,
-              logging: false,
-              imageTimeout: 0
+         try {
+            // استخدام المكتبة الجديدة التي تدعم اللغة العربية 100%
+            const dataUrl = await htmlToImage.toPng(wallpaper, {
+              backgroundColor: '#042320',
+              pixelRatio: 1, // يعادل دقة الصورة
             });
 
             const a = document.createElement('a');
-            a.download = `موظف-الشهر-${name.split(' ')[0]}.png`;
-            a.href = canvas.toDataURL('image/png');
+            a.download = `نجم-الإنجاز-${name.split(' ')[0]}.png`;
+            a.href = dataUrl;
             a.click();
 
-            showToast(`✅ تم تنزيل بطاقة ${name.split(' ')[0]}`);
+            showToast(`تم تنزيل بطاقة ${name.split(' ')[0]} بنجاح ✨`);
           } catch (err) {
             console.error('Download error:', err);
             showToast('❌ حدث خطأ أثناء التنزيل');
           } finally {
             document.body.removeChild(wallpaper);
+            btn.innerHTML = originalText;
+            btn.style.pointerEvents = 'auto';
           }
         });
       });
@@ -728,14 +780,14 @@
         current = Math.min(current + step, target);
         el.textContent = current;
         if (current >= target) clearInterval(timer);
-      }, 35);
+      }, 40);
     }
 
     function showToast(msg) {
       const toast = document.getElementById('toast');
-      toast.textContent = msg;
+      document.getElementById('toast-msg').textContent = msg;
       toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
+      setTimeout(() => toast.classList.remove('show'), 4000);
     }
   </script>
 </body>
