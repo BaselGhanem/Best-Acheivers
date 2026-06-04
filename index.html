@@ -482,7 +482,7 @@
   </nav>
 
   <header class="hero-section">
-    <div class="hero-badge">Apr 2026</div>
+    <div class="hero-badge">May 2026</div>
     <h1 class="hero-title">موظف <span class="accent">الشهر</span></h1>
     <p class="hero-tagline">تقديراً للتميز والإنجازات الاستثنائية التي ترتقي بنا نحو الأفضل</p>
   </header>
@@ -504,24 +504,29 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const employees = [
-        { n: "احلام غالب عيد السليمان", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3014.png" },
-        { n: "امينه محمد محمود الخزاعله", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/4157.png" },
-        { n: "خالده سليمان محمد الصناع", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2074.png" },
-        { n: "ربحي محمد ربحي الحنش", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3679.png" },
-        { n: "سامر احمد محمد السليمان", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3127.png" },
-        { n: "سفيان ناصر عايد الغانم", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3082.png" },
-        { n: "سلامه محمد سليمان السواعير", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3189.png" },
-        { n: "شريف ابراهيم محمود بنات", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2496.png" },
-        { n: "عبدالله بركات عواد العمار", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3013.png" },
-        { n: "محمد عارف عبدالله الثوابيه", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2093.png" },
-        { n: "محمود نوفان عبدالكريم العجوري", d: "الشؤون الادارية", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3153.png" },
-        { n: "فادي هشام احمد جابر", d: "الهندسه", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/2473.png" },
-        { n: "انس تيسير محمد محمود", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3755.png" },
-        { n: "حازم صبري صادق السده", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3990.png" },
-        { n: "رشاد رائد احمد ابو نفيسه", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3792.png" },
-        { n: "عبد الناصر يونس يوسف خنفر", d: "عمليات الجوده", p: "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/3321.png" }
-      ];
+  const employees = [
+    { id: 3809, name: "ايهم علي سالم الصلاج", department: "الهندسة" },
+    { id: 2450, name: "بهاء بسام محمد النخيلي", department: "عمليات الجودة" },
+    { id: 3959, name: "حسين حازم نايف ابو غزالة", department: "البحث والتطوير" },
+    { id: 4041, name: "حسين محمد حسين داوود", department: "البحث والتطوير" },
+    { id: 3353, name: "حمزه محمد احمد طرخان", department: "الهندسة" },
+    { id: 2179, name: "رقيه عبدالفتاح احمد زرزر", department: "عمليات الجودة" },
+    { id: 3799, name: "صلاح الدين جمال يعقوب فرحان", department: "الإنتاج" },
+    { id: 3746, name: "صهيب امين عمر التميمي", department: "الهندسة" },
+    { id: 3960, name: "عبدالله ماهر يعقوب سلام", department: "تطوير الأعمال والتراخيص" },
+    { id: 3837, name: "عبدالله محمد عبدالفتاح مسعد", department: "البحث والتطوير" },
+    { id: 3769, name: "علي صلاح عبدالله ابو التين", department: "الإنتاج" },
+    { id: 4170, name: "عمار نزار اسعد شرف", department: "الإنتاج" },
+    { id: 4151, name: "عمر منذر عمر شرفي", department: "البحث والتطوير" },
+    { id: 2746, name: "مؤيد محمد عبد الله رضوان", department: "البحث والتطوير" },
+    { id: 3611, name: "محمد عبد المنعم محمد مصلح", department: "الإنتاج" },
+    { id: 4030, name: "محمد عيد ايوب الفار", department: "الإنتاج" },
+    { id: 3643, name: "محمد فايز اسماعيل بصبوص", department: "الهندسة" },
+    { id: 4169, name: "نبيل اسحق احمد ابو حسين", department: "الهندسة" },
+    { id: 2000, name: "نيفين محمود عبدالكريم محمد", department: "البحث والتطوير" },
+    { id: 1657, name: "وفاء سامي سليمان المطر", department: "عمليات الجودة" },
+    { id: 2566, name: "ايمان محمد غيث السواعير", department: "السلامة والصحة المهنية" ]
+];
       
       const badges = [
         "روح الفريق", "اصرار وتميز", "عطاء متواصل", "ملهم", "تعاون مثمر", "ابداع متجدد", 
