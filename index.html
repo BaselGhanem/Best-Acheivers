@@ -554,13 +554,17 @@
 
 employees.forEach((emp, i) => {
         const card = document.createElement('div');
-        card.className = `employee-card ${themes[i % themes.length]}`; 
+        card.className = `employee-card ${themes[i % themes.length]}`; 
+        
+        // ملاحظة: بما أن رابط الصورة غير موجود في المصفوفة، تم وضع رابط افتراضي يعتمد على رقم الـ id الخاص بالموظف
+        const photoUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(emp.name)}`;
+
         card.innerHTML = `
           <div class="employee-photo-container">
-            <img src="${emp.p}" alt="صورة ${emp.n}" class="employee-photo" crossorigin="anonymous">
+            <img src="${photoUrl}" alt="صورة ${emp.name}" class="employee-photo" crossorigin="anonymous">
           </div>
-          <h3 class="employee-name">${emp.n}</h3>
-          <p class="employee-title">${emp.d}</p>
+          <h3 class="employee-name">${emp.name}</h3>
+          <p class="employee-title">${emp.department}</p>
           <div class="badges-container"><span class="badge">${badges[i]}</span></div>
           <button class="download-btn" title="تنزيل البطاقة"><i class="fa-solid fa-download"></i></button>
         `;
