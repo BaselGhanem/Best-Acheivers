@@ -525,7 +525,7 @@
     { id: 4169, name: "نبيل اسحق احمد ابو حسين", department: "الهندسة" },
     { id: 2000, name: "نيفين محمود عبدالكريم محمد", department: "البحث والتطوير" },
     { id: 1657, name: "وفاء سامي سليمان المطر", department: "عمليات الجودة" },
-    { id: 2566, name: "ايمان محمد غيث السواعير", department: "السلامة والصحة المهنية" ]
+    { id: 2566, name: "ايمان محمد غيث السواعير", department: "السلامة والصحة المهنية" }
 ];
       
       const badges = [
@@ -552,21 +552,20 @@
       const themes = ["card-theme-1", "card-theme-2", "card-theme-3", "card-theme-4"];
       const container = document.getElementById('employees-container');
 
-      employees.forEach((emp, i) => {
-        const card = document.createElement('div');
-        card.className = `employee-card ${themes[i % themes.length]}`; 
-        card.innerHTML = `
-          <div class="employee-photo-container">
-            <img src="${emp.p}" alt="صورة ${emp.n}" class="employee-photo" crossorigin="anonymous">
-          </div>
-          <h3 class="employee-name">${emp.n}</h3>
-          <p class="employee-title">${emp.d}</p>
-          <div class="badges-container"><span class="badge">${badges[i]}</span></div>
-          <button class="download-btn" title="تنزيل البطاقة"><i class="fa-solid fa-download"></i></button>
-        `;
-        container.appendChild(card);
-      });
-
+employees.forEach((emp, i) => {
+        const card = document.createElement('div');
+        card.className = `employee-card ${themes[i % themes.length]}`; 
+        card.innerHTML = `
+          <div class="employee-photo-container">
+            <img src="${emp.p}" alt="صورة ${emp.n}" class="employee-photo" crossorigin="anonymous">
+          </div>
+          <h3 class="employee-name">${emp.n}</h3>
+          <p class="employee-title">${emp.d}</p>
+          <div class="badges-container"><span class="badge">${badges[i]}</span></div>
+          <button class="download-btn" title="تنزيل البطاقة"><i class="fa-solid fa-download"></i></button>
+        `;
+        container.appendChild(card);
+      });
       document.querySelectorAll('.download-btn').forEach((btn) => {
         btn.addEventListener('click', async (e) => {
           e.stopPropagation();
