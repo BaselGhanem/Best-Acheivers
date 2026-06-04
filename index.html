@@ -432,7 +432,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // التأكد من تحميل البيانات من الملف الخارجي، وإلا نضع مصفوفة فارغة لحماية الكود من التوقف
+      // التأكد من تحميل البيانات من الملف الخارجي
       const employees = typeof employeesData !== 'undefined' ? employeesData : [];
       
       const badges = [
@@ -459,15 +459,15 @@
       const themes = ["card-theme-1", "card-theme-2", "card-theme-3", "card-theme-4"];
       const container = document.getElementById('employees-container');
       
-      // الرابط الأساسي للمجلد الجديد على GitHub (الروابط المباشرة تعتمد على raw.githubusercontent.com)
+      // الرابط الأساسي للمجلد الجديد على GitHub
       const baseImageUrl = "https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/New/";
 
+      // هنا تم استبدال الكود بالجزء الجديد والمطور بالكامل
       employees.forEach((emp, i) => {
         const card = document.createElement('div');
         card.className = `employee-card ${themes[i % themes.length]}`; 
         
-        // بناء رابط الصورة بناء على الـ ID الخاص بكل موظف
-        const fullImageUrl = `${baseImageUrl}${emp.id}.png`;
+        let fullImageUrl = `${baseImageUrl}${emp.id}.png`;
 
         card.innerHTML = `
           <div class="employee-photo-container">
@@ -479,10 +479,17 @@
           <button class="download-btn" title="تنزيل البطاقة"><i class="fa-solid fa-download"></i></button>
         `;
 
-        // ميزة ذكية: إذا حذفت الصورة من GitHub، يفشل تحميلها، فيقوم هذا السطر بحذف الكرت بالكامل
         const imgElement = card.querySelector('.employee-photo');
+        
+        // نظام المحاولات الذكي للتعامل مع الامتدادات المختلفة وحذف الكرت عند الفشل النهائي
         imgElement.onerror = () => {
-          card.remove();
+          if (imgElement.src.endsWith('.png')) {
+            imgElement.src = `${baseImageUrl}${emp.id}.PNG`;
+          } else if (imgElement.src.endsWith('.PNG')) {
+            imgElement.src = `${baseImageUrl}${emp.id}.jpg`;
+          } else {
+            card.remove();
+          }
         };
 
         container.appendChild(card);
