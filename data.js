@@ -38,27 +38,15 @@ const APP_DATA = {
   ],
 
   employees: [
-    { name: `ايهم علي سالم الصلاج`, department: `الهندسة`, photoFile: `3809.png` },
-    { name: `بهاء بسام محمد النخيلي`, department: `عمليات الجودة`, photoFile: `2450.png` },
-    { name: `حسين حازم نايف ابو غزالة`, department: `البحث والتطوير`, photoFile: `3959.png` },
-    { name: `حسين محمد حسين داوود`, department: `البحث والتطوير`, photoFile: `4041.png` },
-    { name: `حمزه محمد احمد طرخان`, department: `الهندسة`, photoFile: `3353.png` },
-    { name: `رقيه عبدالفتاح احمد زرزر`, department: `عمليات الجودة`, photoFile: `2179.png` },
-    { name: `صلاح الدين جمال يعقوب فرحان`, department: `الإنتاج`, photoFile: `3799.png` },
-    { name: `صهيب امين عمر التميمي`, department: `الهندسة`, photoFile: `3746.png` },
-    { name: `عبدالله ماهر يعقوب سلام`, department: `تطوير الأعمال والتراخيص`, photoFile: `3960.png` },
-    { name: `عبدالله محمد عبدالفتاح مسعد`, department: `البحث والتطوير`, photoFile: `3837.png` },
-    { name: `علي صلاح عبدالله ابو التين`, department: `الإنتاج`, photoFile: `3769.png` },
-    { name: `عمار نزار اسعد شرف`, department: `الإنتاج`, photoFile: `4170.png` },
-    { name: `عمر منذر عمر شرفي`, department: `البحث والتطوير`, photoFile: `4151.png` },
-    { name: `مؤيد محمد عبد الله رضوان`, department: `البحث والتطوير`, photoFile: `2746.png` },
-    { name: `محمد عبد المنعم محمد مصلح`, department: `الإنتاج`, photoFile: `3611.png` },
-    { name: `محمد عيد ايوب الفار`, department: `الإنتاج`, photoFile: `4030.png` },
-    { name: `محمد فايز اسماعيل بصبوص`, department: `الهندسة`, photoFile: `3643.png` },
-    { name: `نبيل اسحق احمد ابو حسين`, department: `الهندسة`, photoFile: `4169.png` },
-    { name: `نيفين محمود عبدالكريم محمد`, department: `البحث والتطوير`, photoFile: `2000.png` },
-    { name: `وفاء سامي سليمان المطر`, department: `عمليات الجودة`, photoFile: `1657.png` },
-    { name: `ايمان محمد غيث السواعير`, department: `السلامة والصحة المهنية`, photoFile: `2566.png` }
+    {name: `الهام علي صالح السواعير`, department: `عمليات الجودة`, photoFile: `2765.png` },
+    { name: `روان زكريا عبد الرحمن الديب`, department: `الموارد البشرية`, photoFile: `3992.png` },
+    { name: `ضياء الدين محمد محمود المغربي`, department: `سلسلة التوريد`, photoFile: `3307.png` },
+    { name: `عبد الكريم احمد عبد الصويص`, department: `الموارد البشرية`, photoFile: `3997.png` },
+    { name: `عصام حازم حافظ سقف الحيط`, department: `الإنتاج`, photoFile: `4083.png` },
+    { name: `عمر خلف غنايم غيظان`, department: `الشؤون الإدارية`, photoFile: `1290.png` },
+    { name: `عنود عبدالناصر محمد عزمي عاصي`, department: `عمليات الجودة`, photoFile: `3770.png` },
+    { name: `مياده جمال عبد الفتاح الحياري`, department: `الموارد البشرية`, photoFile: `3902.png` }
+
   ]
 };
 
