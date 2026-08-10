@@ -286,6 +286,11 @@
       color: var(--deep-teal);
       margin-bottom: 0.4rem;
       letter-spacing: -0.01em;
+      line-height: 1.45;
+      min-height: 3.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .employee-dept {
@@ -293,6 +298,10 @@
       color: var(--text-muted);
       font-weight: 600;
       margin-bottom: 1.5rem;
+      min-height: 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: rgba(0,0,0,0.03);
       padding: 0.3rem 1rem;
       border-radius: 100px;
@@ -310,6 +319,8 @@
       font-size: 0.85rem;
       border: 1px solid rgba(212, 175, 55, 0.2);
       margin-bottom: 2rem;
+      min-height: 2.5rem;
+      box-sizing: border-box;
     }
 
     .badge i { font-size: 0.9rem; }
