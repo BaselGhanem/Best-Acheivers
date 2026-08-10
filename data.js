@@ -4,7 +4,7 @@
 // ============================================================
 
 const APP_DATA = {
-  monthLabel: `June 2026`,
+  monthLabel: `July 2026`,
   pageTitle: `موظف الشهر | دار الدواء`,
   logoUrl: `https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png`,
   photoBaseUrl: `https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/`,
@@ -37,17 +37,22 @@ const APP_DATA = {
     `تفكير مبتكر`
   ],
 
-  employees: [
-    {name: `الهام علي صالح السواعير`, department: `عمليات الجودة`, photoFile: `2765.png` },
-    { name: `روان زكريا عبد الرحمن الديب`, department: `الموارد البشرية`, photoFile: `3992.png` },
-    { name: `ضياء الدين محمد محمود المغربي`, department: `سلسلة التوريد`, photoFile: `3307.png` },
-    { name: `عبد الكريم احمد عبد الصويص`, department: `الموارد البشرية`, photoFile: `3997.png` },
-    { name: `عصام حازم حافظ سقف الحيط`, department: `الإنتاج`, photoFile: `4083.png` },
-    { name: `عمر خلف غنايم غيظان`, department: `الشؤون الإدارية`, photoFile: `1290.png` },
-    { name: `عنود عبدالناصر محمد عزمي عاصي`, department: `عمليات الجودة`, photoFile: `3770.png` },
-    { name: `مياده جمال عبد الفتاح الحياري`, department: `الموارد البشرية`, photoFile: `3902.png` }
-
+  eemployees: [
+    { name: `ابراهيم محمد فخري سلطان`, department: `عمليات الجودة`, photoFile: `3672.png` },
+    { name: `ايمن سامي ابراهيم دبابنه`, department: `الهندسة`, photoFile: `2200.png` },
+    { name: `جودت عبدالله جودت المناصير`, department: `عمليات الجودة`, photoFile: `3604.png` },
+    { name: `رامي جمال محمد ابو ريا`, department: `عمليات الجودة`, photoFile: `3733.png` },
+    { name: `عامر سفيان عيسى سعاده`, department: `عمليات الجودة`, photoFile: `3688.png` },
+    { name: `عصام موسى عبدالهادي ابو زيد`, department: `عمليات الجودة`, photoFile: `2977.png` },
+    { name: `فادي هشام احمد جابر`, department: `الهندسة`, photoFile: `2473.png` },
+    { name: `محمد محمود عايد ابو صعيليك`, department: `عمليات الجودة`, photoFile: `3485.png` },
+    { name: `مرام محمود ساكب علي`, department: `عمليات الجودة`, photoFile: `2079.png` },
+    { name: `مها زهير عمر علي`, department: `عمليات الجودة`, photoFile: `2130.png` },
+    { name: `هبة اسامه احمد ابوشتيه`, department: `عمليات الجودة`, photoFile: `4136.png` },
+    { name: `يوسف محمد يوسف العلي`, department: `عمليات الجودة`, photoFile: `3659.png` }
   ]
+};
+
 };
 
 window.APP_DATA = APP_DATA;
