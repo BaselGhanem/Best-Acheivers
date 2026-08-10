@@ -140,7 +140,7 @@ function createEmployeeCard(emp, index) {
 
   const badge = document.createElement(`div`);
   badge.className = `badge`;
-  badge.innerHTML = `<i class="fa-solid fa-award"></i> ${escapeHtml(DATA.badges[index % DATA.badges.length])}`;
+  badge.innerHTML = `<svg class="badge-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="5" fill="currentColor"></circle><path d="M9 12.1 7.4 22l4.6-2.8 4.6 2.8L15 12.1A6.9 6.9 0 0 1 12 13a6.9 6.9 0 0 1-3-.9Z" fill="currentColor"></path><circle cx="12" cy="8" r="2.2" fill="#FFF4D6"></circle></svg> ${escapeHtml(DATA.badges[index % DATA.badges.length])}`;
 
   const button = document.createElement(`button`);
   button.className = `action-download-btn`;
