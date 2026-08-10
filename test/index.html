@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نجوم الإنجاز | Slideshow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js" defer></script>
+  <script src="data.js" defer></script>
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+  <main class="slideshow-shell" aria-label="نجوم الإنجاز">
+    <header class="topbar">
+      <img id="brand-logo" class="brand-logo" alt="دار الدواء">
+      <div class="title-lockup">
+        <span class="eyebrow"><i class="fa-solid fa-award"></i> موظف الشهر</span>
+        <h1>نجوم الإنجاز</h1>
+      </div>
+    </header>
+
+    <section id="slide" class="hero-slide" aria-live="polite">
+      <div class="portrait-panel">
+        <div class="portrait-orbit"></div>
+        <img id="employee-photo" class="employee-photo" alt="">
+        <button id="previous" class="nav-arrow nav-arrow--previous" type="button" aria-label="الموظف السابق">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div class="content-panel">
+        <div class="recognition-label"><span></span> نجوم الإنجاز <i class="fa-solid fa-medal"></i> <span></span></div>
+        <h2 id="employee-name"></h2>
+        <p class="recognition-copy">نقدّر تفانيك وإسهاماتك المتميزة التي تصنع فرقًا حقيقيًا في نجاحنا المشترك.</p>
+        <div class="meta-row">
+          <span id="employee-department" class="department-pill"></span>
+          <span id="employee-badge" class="achievement-pill"><i class="fa-solid fa-award"></i><b></b></span>
+        </div>
+        <div class="achievement-progress">
+          <div class="progress-copy"><span>رحلة التميز مستمرة</span><strong>100%</strong></div>
+          <div class="progress-track"><span></span></div>
+        </div>
+        <button id="download" class="download-button" type="button">
+          <i class="fa-solid fa-download"></i><span>تنزيل البطاقة</span>
+        </button>
+        <button id="next" class="nav-arrow nav-arrow--next" type="button" aria-label="الموظف التالي">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+      </div>
+    </section>
+
+    <nav class="slide-navigation" aria-label="التنقل بين الموظفين">
+      <button id="jump-previous" class="jump-button" type="button" aria-label="السابق"><i class="fa-solid fa-angles-right"></i></button>
+      <div id="slide-numbers" class="slide-numbers"></div>
+      <button id="jump-next" class="jump-button" type="button" aria-label="التالي"><i class="fa-solid fa-angles-left"></i></button>
+    </nav>
+    <div class="footer-progress"><span id="footer-progress-fill"></span></div>
+    <p id="slide-counter" class="slide-counter"></p>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>
