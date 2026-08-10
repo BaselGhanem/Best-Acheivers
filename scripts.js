@@ -172,121 +172,114 @@ function renderEmployees() {
   });
 }
 
+async function waitForExportAssets(element) {
+  if (document.fonts?.ready) {
+    await document.fonts.ready;
+  }
+
+  const images = Array.from(element.querySelectorAll(`img`));
+  await Promise.all(images.map(async (image) => {
+    if (image.complete && image.naturalWidth > 0) return;
+
+    try {
+      await image.decode();
+    } catch {
+      await new Promise((resolve) => {
+        image.addEventListener(`load`, resolve, { once: true });
+        image.addEventListener(`error`, resolve, { once: true });
+      });
+    }
+  }));
+}
+
+function createExportCard(card) {
+  const exportCard = card.cloneNode(true);
+  const exportButton = exportCard.querySelector(`.action-download-btn`);
+  if (exportButton) exportButton.remove();
+
+  exportCard.classList.add(`export-card`);
+  Object.assign(exportCard.style, {
+    position: `fixed`,
+    left: `-10000px`,
+    top: `0`,
+    width: `360px`,
+    maxWidth: `none`,
+    minWidth: `360px`,
+    boxSizing: `border-box`,
+    margin: `0`,
+    transform: `none`,
+    transition: `none`,
+    animation: `none`,
+    opacity: `1`,
+    background: `#ffffff`,
+    zIndex: `-1`
+  });
+
+  exportCard.querySelectorAll(`*`).forEach((element) => {
+    element.style.animation = `none`;
+    element.style.transition = `none`;
+    element.style.transform = `none`;
+  });
+
+  const avatarRing = exportCard.querySelector(`.avatar-ring`);
+  if (avatarRing) avatarRing.style.opacity = `0`;
+
+  return exportCard;
+}
+
+function triggerImageDownload(blob, fileName) {
+  const objectUrl = URL.createObjectURL(blob);
+  const downloadLink = document.createElement(`a`);
+  downloadLink.href = objectUrl;
+  downloadLink.download = fileName;
+  downloadLink.style.display = `none`;
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  downloadLink.remove();
+
+  setTimeout(() => URL.revokeObjectURL(objectUrl), 30000);
+}
+
 async function handleDownload(event, button) {
   event.stopPropagation();
 
   const originalText = button.innerHTML;
   button.innerHTML = `جاري التجهيز... <i class="fa-solid fa-spinner fa-spin"></i>`;
-  button.style.pointerEvents = `none`;
+  button.disabled = true;
 
   const card = button.closest(`.employee-card`);
   const name = card.querySelector(`.employee-name`).textContent.trim();
-  const dept = card.querySelector(`.employee-dept`).textContent.trim();
-  const badgeText = card.querySelector(`.badge`).textContent.trim();
-  const avatarSrc = card.querySelector(`.employee-avatar`).src;
-  const wallpaper = createWallpaperElement({ name, dept, badgeText, avatarSrc });
-
-  document.body.appendChild(wallpaper);
+  const exportCard = createExportCard(card);
+  document.body.appendChild(exportCard);
 
   try {
-    const dataUrl = await htmlToImage.toPng(wallpaper, {
-      backgroundColor: `#042320`,
-      pixelRatio: 1
+    await waitForExportAssets(exportCard);
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+    const blob = await htmlToImage.toBlob(exportCard, {
+      backgroundColor: `#ffffff`,
+      cacheBust: true,
+      pixelRatio: 3,
+      width: 360,
+      height: Math.ceil(exportCard.getBoundingClientRect().height),
+      style: {
+        transform: `none`,
+        margin: `0`
+      }
     });
 
-    const downloadLink = document.createElement(`a`);
-    downloadLink.download = `نجم-الإنجاز-${name.split(` `)[0]}.png`;
-    downloadLink.href = dataUrl;
-    downloadLink.click();
+    if (!blob) throw new Error(`تعذر إنشاء صورة البطاقة`);
 
+    triggerImageDownload(blob, `نجم-الإنجاز-${name.split(` `)[0]}.png`);
     showToast(`تم تنزيل بطاقة ${name.split(` `)[0]} بنجاح ✨`);
   } catch (err) {
     console.error(`Download error:`, err);
-    showToast(`❌ حدث خطأ أثناء التنزيل`);
+    showToast(`❌ حدث خطأ أثناء تنزيل البطاقة`);
   } finally {
-    document.body.removeChild(wallpaper);
+    exportCard.remove();
     button.innerHTML = originalText;
-    button.style.pointerEvents = `auto`;
+    button.disabled = false;
   }
-}
-
-function createWallpaperElement({ name, dept, badgeText, avatarSrc }) {
-  const wallpaper = document.createElement(`div`);
-  wallpaper.setAttribute(`dir`, `rtl`);
-
-  Object.assign(wallpaper.style, {
-    position: `fixed`,
-    left: `-9999px`,
-    top: `0`,
-    width: `1080px`,
-    height: `1920px`,
-    background: `linear-gradient(135deg, #042320 0%, #004D44 100%)`,
-    display: `flex`,
-    flexDirection: `column`,
-    alignItems: `center`,
-    justifyContent: `center`,
-    fontFamily: `'Almarai', sans-serif`,
-    direction: `rtl`,
-    overflow: `hidden`
-  });
-
-  wallpaper.innerHTML = `
-    <div style="position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);border-radius:50%;"></div>
-    <div style="position:absolute;bottom:-300px;left:-200px;width:800px;height:800px;background:radial-gradient(circle, rgba(0,166,147,0.2) 0%, transparent 70%);border-radius:50%;"></div>
-
-    <div style="
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 60px;
-      width: 860px;
-      padding: 100px 60px;
-      text-align: center;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-      position: relative;
-      z-index: 10;
-    ">
-      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:8px;background:linear-gradient(90deg, transparent, #D4AF37, transparent);"></div>
-
-      <div style="margin-bottom:60px;">
-        <h2 style="color: #fff; font-size: 3.2rem; font-weight: 800; margin: 0; opacity: 0.9;">دار الدواء</h2>
-      </div>
-
-      <div style="position:relative; width:340px; height:340px; margin:0 auto 50px;">
-        <div style="position:absolute; inset:-15px; border-radius:50%; background:linear-gradient(135deg, #00A693, #D4AF37); opacity:0.8; filter:blur(10px);"></div>
-        <img src="${escapeHtml(avatarSrc)}" style="
-          position:relative;
-          width:340px;height:340px;border-radius:50%;
-          display:block;
-          border:8px solid #042320;
-          box-shadow:0 20px 50px rgba(0,0,0,0.6);
-          object-fit:cover;
-        " crossorigin="anonymous">
-      </div>
-
-      <div style="font-size:3.5rem;font-weight:800;color:#FFFFFF;margin-bottom:20px;letter-spacing:-0.02em;">${escapeHtml(name)}</div>
-      <div style="font-size:1.8rem;color:#4DB6AC;font-weight:600;margin-bottom:40px;">${escapeHtml(dept)}</div>
-
-      <div style="
-        display:inline-block;
-        background:linear-gradient(135deg, #D4AF37, #9C7D1C);
-        color:#FFFFFF;
-        font-weight:800;font-size:1.6rem;
-        padding:15px 50px;border-radius:100px;
-        box-shadow: 0 10px 30px rgba(212,175,55,0.3);
-        margin-bottom:60px;
-      ">${escapeHtml(badgeText)}</div>
-
-      <div style="width:100px;height:2px;background:rgba(255,255,255,0.2);margin:0 auto 40px;"></div>
-
-      <div style="font-size:1.5rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:4px;">
-        موظف الشهر • ${escapeHtml(DATA.monthLabel)}
-      </div>
-    </div>
-  `;
-
-  return wallpaper;
 }
 
 function animateCounter(id, target) {
