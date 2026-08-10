@@ -2,12 +2,53 @@ const DATA = window.APP_DATA;
 let currentIndex = 0;
 let touchStartX = 0;
 let toastTimer;
+let transitionLocked = false;
 
 const elements = {};
 
 function employeePhotoUrl(employee) {
   if (employee.photo) return employee.photo;
-  return `${DATA.photoBaseUrl}${employee.photoFile}`;
+  if (employee.photoFile) return `${DATA.photoBaseUrl}${employee.photoFile}`;
+  return null;
+}
+
+function preloadImage(src) {
+  return new Promise((resolve) => {
+    const image = new Image();
+    image.crossOrigin = `anonymous`;
+    image.onload = () => resolve(true);
+    image.onerror = () => resolve(false);
+    image.src = src;
+  });
+}
+
+async function resolveEmployeeImage(employee) {
+  const employeeSrc = employeePhotoUrl(employee);
+
+  if (employeeSrc && await preloadImage(employeeSrc)) {
+    return { src: employeeSrc, isFallback: false };
+  }
+
+  await preloadImage(DATA.logoUrl);
+  return { src: DATA.logoUrl, isFallback: true };
+}
+
+function applyEmployeeImage(employee, imageData) {
+  const fallback = imageData ?? {
+    src: employeePhotoUrl(employee) || DATA.logoUrl,
+    isFallback: !employeePhotoUrl(employee)
+  };
+
+  elements.photo.crossOrigin = `anonymous`;
+  elements.photo.classList.toggle(`is-logo-fallback`, fallback.isFallback);
+  elements.photo.src = fallback.src;
+  elements.photo.alt = fallback.isFallback ? `شعار دار الدواء` : employee.name;
+  elements.photo.onerror = () => {
+    elements.photo.onerror = null;
+    elements.photo.classList.add(`is-logo-fallback`);
+    elements.photo.src = DATA.logoUrl;
+    elements.photo.alt = `شعار دار الدواء`;
+  };
 }
 
 function formatNumber(number) {
@@ -27,11 +68,9 @@ function buildNavigation() {
   });
 }
 
-function updateSlide() {
+function updateSlide(imageData = null) {
   const employee = DATA.employees[currentIndex];
-  elements.photo.crossOrigin = `anonymous`;
-  elements.photo.src = employeePhotoUrl(employee);
-  elements.photo.alt = employee.name;
+  applyEmployeeImage(employee, imageData);
   elements.name.textContent = employee.name;
   elements.department.textContent = employee.department;
   elements.badgeText.textContent = DATA.badges[currentIndex % DATA.badges.length];
@@ -48,15 +87,35 @@ function updateSlide() {
   activeButton?.scrollIntoView({ behavior: `smooth`, block: `nearest`, inline: `center` });
 }
 
-function goToSlide(index) {
+async function goToSlide(index) {
   const nextIndex = (index + DATA.employees.length) % DATA.employees.length;
-  if (nextIndex === currentIndex) return;
+  if (nextIndex === currentIndex || transitionLocked) return;
+
+  transitionLocked = true;
   elements.slide.classList.add(`is-changing`);
-  window.setTimeout(() => {
+  elements.slide.setAttribute(`aria-busy`, `true`);
+
+  try {
+    const [imageData] = await Promise.all([
+      resolveEmployeeImage(DATA.employees[nextIndex]),
+      new Promise((resolve) => window.setTimeout(resolve, 140))
+    ]);
+
     currentIndex = nextIndex;
-    updateSlide();
+    updateSlide(imageData);
+
+    try {
+      await elements.photo.decode();
+    } catch {
+      // The onerror fallback in applyEmployeeImage handles failed decoding.
+    }
+
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+  } finally {
     elements.slide.classList.remove(`is-changing`);
-  }, 180);
+    elements.slide.removeAttribute(`aria-busy`);
+    transitionLocked = false;
+  }
 }
 
 function showToast(message) {
