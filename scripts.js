@@ -118,10 +118,10 @@ function createEmployeeCard(emp, index) {
   avatarRing.className = `avatar-ring`;
 
   const avatar = document.createElement(`img`);
+  avatar.crossOrigin = `anonymous`;
   avatar.src = getEmployeePhotoUrl(emp);
   avatar.className = `employee-avatar`;
   avatar.alt = emp.name;
-  avatar.crossOrigin = `anonymous`;
   avatar.onerror = () => {
     avatar.onerror = null;
     avatar.src = fallbackSrc;
