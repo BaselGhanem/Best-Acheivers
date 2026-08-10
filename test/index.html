@@ -8,10 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js" defer></script>
   <script src="data.js" defer></script>
-  <script src="scripts.js?v=2" defer></script>
+  <script src="scripts.js?v=3" defer></script>
 </head>
 <body>
   <main class="slideshow-shell" aria-label="نجوم الإنجاز">
@@ -54,12 +54,18 @@
     </section>
 
     <nav class="slide-navigation" aria-label="التنقل بين الموظفين">
-      <button id="jump-previous" class="jump-button" type="button" aria-label="السابق"><i class="fa-solid fa-angles-right"></i></button>
+      <button id="jump-previous" class="jump-button" type="button" aria-label="الموظف السابق">
+        <i class="fa-solid fa-arrow-right"></i><span>السابق</span>
+      </button>
       <div id="slide-numbers" class="slide-numbers"></div>
-      <button id="jump-next" class="jump-button" type="button" aria-label="التالي"><i class="fa-solid fa-angles-left"></i></button>
+      <span id="mobile-slide-counter" class="mobile-slide-counter" aria-live="polite"></span>
+      <button id="jump-next" class="jump-button" type="button" aria-label="الموظف التالي">
+        <span>التالي</span><i class="fa-solid fa-arrow-left"></i>
+      </button>
     </nav>
     <div class="footer-progress"><span id="footer-progress-fill"></span></div>
     <p id="slide-counter" class="slide-counter"></p>
+    <p class="swipe-hint"><i class="fa-solid fa-hand-pointer"></i> اسحب يمينًا أو يسارًا للتنقل</p>
   </main>
   <div id="toast" class="toast" role="status"></div>
 </body>
