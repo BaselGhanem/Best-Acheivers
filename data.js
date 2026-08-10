@@ -37,7 +37,7 @@ const APP_DATA = {
     `تفكير مبتكر`
   ],
 
-  eemployees: [
+  employees: [
     { name: `ابراهيم محمد فخري سلطان`, department: `عمليات الجودة`, photoFile: `3672.png` },
     { name: `ايمن سامي ابراهيم دبابنه`, department: `الهندسة`, photoFile: `2200.png` },
     { name: `جودت عبدالله جودت المناصير`, department: `عمليات الجودة`, photoFile: `3604.png` },
@@ -51,8 +51,6 @@ const APP_DATA = {
     { name: `هبة اسامه احمد ابوشتيه`, department: `عمليات الجودة`, photoFile: `4136.png` },
     { name: `يوسف محمد يوسف العلي`, department: `عمليات الجودة`, photoFile: `3659.png` }
   ]
-};
-
 };
 
 window.APP_DATA = APP_DATA;
