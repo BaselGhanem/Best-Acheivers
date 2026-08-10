@@ -192,39 +192,37 @@ async function waitForExportAssets(element) {
   }));
 }
 
-function createExportCard(card) {
-  const exportCard = card.cloneNode(true);
-  const exportButton = exportCard.querySelector(`.action-download-btn`);
-  if (exportButton) exportButton.remove();
+async function convertImageToDataUrl(image) {
+  const originalSrc = image.src;
 
-  exportCard.classList.add(`export-card`);
-  Object.assign(exportCard.style, {
-    position: `fixed`,
-    left: `-10000px`,
-    top: `0`,
-    width: `360px`,
-    maxWidth: `none`,
-    minWidth: `360px`,
-    boxSizing: `border-box`,
-    margin: `0`,
-    transform: `none`,
-    transition: `none`,
-    animation: `none`,
-    opacity: `1`,
-    background: `#ffffff`,
-    zIndex: `-1`
-  });
+  if (originalSrc.startsWith(`data:`)) {
+    return () => {};
+  }
 
-  exportCard.querySelectorAll(`*`).forEach((element) => {
-    element.style.animation = `none`;
-    element.style.transition = `none`;
-    element.style.transform = `none`;
-  });
+  try {
+    const response = await fetch(originalSrc, { cache: `no-store` });
+    if (!response.ok) throw new Error(`Image request failed: ${response.status}`);
 
-  const avatarRing = exportCard.querySelector(`.avatar-ring`);
-  if (avatarRing) avatarRing.style.opacity = `0`;
+    const blob = await response.blob();
+    const dataUrl = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
 
-  return exportCard;
+    image.removeAttribute(`crossorigin`);
+    image.src = dataUrl;
+    await image.decode();
+
+    return () => {
+      image.crossOrigin = `anonymous`;
+      image.src = originalSrc;
+    };
+  } catch (error) {
+    console.warn(`تعذر تضمين صورة الموظف، سيتم استخدام الصورة المحمّلة:`, error);
+    return () => {};
+  }
 }
 
 function triggerImageDownload(blob, fileName) {
@@ -249,20 +247,39 @@ async function handleDownload(event, button) {
 
   const card = button.closest(`.employee-card`);
   const name = card.querySelector(`.employee-name`).textContent.trim();
-  const exportCard = createExportCard(card);
-  document.body.appendChild(exportCard);
+  const avatar = card.querySelector(`.employee-avatar`);
+  const originalButtonDisplay = button.style.display;
+  const originalCardStyles = {
+    animation: card.style.animation,
+    transition: card.style.transition,
+    transform: card.style.transform
+  };
+
+  let restoreAvatar = () => {};
 
   try {
-    await waitForExportAssets(exportCard);
+    await waitForExportAssets(card);
+    restoreAvatar = await convertImageToDataUrl(avatar);
+
+    button.style.display = `none`;
+    card.style.animation = `none`;
+    card.style.transition = `none`;
+    card.style.transform = `none`;
+
     await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
-    const blob = await htmlToImage.toBlob(exportCard, {
+    const bounds = card.getBoundingClientRect();
+    const blob = await htmlToImage.toBlob(card, {
       backgroundColor: `#ffffff`,
       cacheBust: true,
+      includeQueryParams: true,
       pixelRatio: 3,
-      width: 360,
-      height: Math.ceil(exportCard.getBoundingClientRect().height),
+      width: Math.ceil(bounds.width),
+      height: Math.ceil(bounds.height),
+      skipFonts: true,
       style: {
+        animation: `none`,
+        transition: `none`,
         transform: `none`,
         margin: `0`
       }
@@ -276,7 +293,11 @@ async function handleDownload(event, button) {
     console.error(`Download error:`, err);
     showToast(`❌ حدث خطأ أثناء تنزيل البطاقة`);
   } finally {
-    exportCard.remove();
+    restoreAvatar();
+    button.style.display = originalButtonDisplay;
+    card.style.animation = originalCardStyles.animation;
+    card.style.transition = originalCardStyles.transition;
+    card.style.transform = originalCardStyles.transform;
     button.innerHTML = originalText;
     button.disabled = false;
   }
