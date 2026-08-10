@@ -1,68 +1,73 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>موظف الشهر | دار الدواء</title>
-  <link rel="icon" href="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" type="image/png" />
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نجوم الإنجاز | Slideshow</title>
+  <link rel="icon" href="https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260810-7" />
-
-  <!-- مكتبة تحويل البطاقة إلى صورة PNG -->
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css?v=20260810-main-1">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js" defer></script>
-  <script src="data.js?v=20260810-7" defer></script>
-  <script src="scripts.js?v=20260810-7" defer></script>
+  <script src="data.js" defer></script>
+  <script src="scripts.js?v=20260810-main-1" defer></script>
 </head>
 <body>
-  <div class="background-pattern"></div>
-
-  <nav class="modern-nav">
-    <div class="nav-container">
-      <div class="nav-logo">
-        <img id="company-logo" src="" alt="دار الدواء">
+  <main class="slideshow-shell" aria-label="نجوم الإنجاز">
+    <header class="topbar">
+      <img id="brand-logo" class="brand-logo" alt="دار الدواء">
+      <div class="title-lockup">
+        <span class="eyebrow"><i class="fa-solid fa-award"></i> موظف الشهر</span>
+        <h1>نجوم الإنجاز</h1>
       </div>
-      <div id="nav-menu" class="nav-menu"></div>
-    </div>
-  </nav>
+    </header>
 
-  <header class="hero-section">
-    <div class="hero-badge">
-      <i class="fa-solid fa-crown"></i>
-      <span id="month-label"></span>
-    </div>
-    <h1 class="hero-title"><span id="hero-title-main"></span> <span id="hero-title-accent" class="accent"></span></h1>
-    <p id="hero-tagline" class="hero-tagline"></p>
-  </header>
-
-  <main class="main-content">
-    <section>
-      <div class="counter-strip">
-        <div class="counter-item">
-          <span class="counter-number" id="total-count">0</span>
-          <span class="counter-label">موظف مكرم</span>
-        </div>
-        <div class="counter-item">
-          <span class="counter-number" id="dept-count">0</span>
-          <span class="counter-label">قسم مشارك</span>
-        </div>
+    <section id="slide" class="hero-slide" aria-live="polite">
+      <div class="portrait-panel">
+        <div class="portrait-orbit"></div>
+        <img id="employee-photo" class="employee-photo" alt="">
+        <button id="previous" class="nav-arrow nav-arrow--previous" type="button" aria-label="الموظف السابق">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
       </div>
 
-      <div id="employees-container" class="employees-grid"></div>
+      <div class="content-panel">
+        <div class="recognition-label"><span></span> نجوم الإنجاز <i class="fa-solid fa-medal"></i> <span></span></div>
+        <h2 id="employee-name"></h2>
+        <p class="recognition-copy">نقدّر تفانيك وإسهاماتك المتميزة التي تصنع فرقًا حقيقيًا في نجاحنا المشترك.</p>
+        <div class="meta-row">
+          <span id="employee-department" class="department-pill"></span>
+          <span id="employee-badge" class="achievement-pill"><i class="fa-solid fa-award"></i><b></b></span>
+        </div>
+        <div class="achievement-progress">
+          <div class="progress-copy"><span>رحلة التميز مستمرة</span><strong>100%</strong></div>
+          <div class="progress-track"><span></span></div>
+        </div>
+        <button id="download" class="download-button" type="button">
+          <i class="fa-solid fa-download"></i><span>تنزيل البطاقة</span>
+        </button>
+        <button id="next" class="nav-arrow nav-arrow--next" type="button" aria-label="الموظف التالي">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+      </div>
     </section>
+
+    <nav class="slide-navigation" aria-label="التنقل بين الموظفين">
+      <button id="jump-previous" class="jump-button" type="button" aria-label="الموظف السابق">
+        <i class="fa-solid fa-arrow-right"></i><span>السابق</span>
+      </button>
+      <div id="slide-numbers" class="slide-numbers"></div>
+      <span id="mobile-slide-counter" class="mobile-slide-counter" aria-live="polite"></span>
+      <button id="jump-next" class="jump-button" type="button" aria-label="الموظف التالي">
+        <span>التالي</span><i class="fa-solid fa-arrow-left"></i>
+      </button>
+    </nav>
+    <div class="footer-progress"><span id="footer-progress-fill"></span></div>
+    <p id="slide-counter" class="slide-counter"></p>
+    <p class="swipe-hint"><i class="fa-solid fa-hand-pointer"></i> اسحب يمينًا أو يسارًا للتنقل</p>
   </main>
-
-  <footer class="site-footer">
-    <img id="footer-logo" src="" alt="دار الدواء">
-    <p id="footer-text"></p>
-  </footer>
-
-  <div class="toast" id="toast">
-    <i class="fa-solid fa-circle-check"></i>
-    <span id="toast-msg">تم تنزيل البطاقة بنجاح</span>
-  </div>
+  <div id="toast" class="toast" role="status"></div>
 </body>
 </html>
