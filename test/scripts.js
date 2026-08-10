@@ -36,6 +36,7 @@ function updateSlide() {
   elements.department.textContent = employee.department;
   elements.badgeText.textContent = DATA.badges[currentIndex % DATA.badges.length];
   elements.counter.textContent = `${formatNumber(currentIndex + 1)} / ${formatNumber(DATA.employees.length)}`;
+  elements.mobileCounter.textContent = `${currentIndex + 1} من ${DATA.employees.length}`;
   elements.progress.style.width = `${((currentIndex + 1) / DATA.employees.length) * 100}%`;
 
   let activeButton;
@@ -146,6 +147,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
     department: document.getElementById(`employee-department`),
     badgeText: document.querySelector(`#employee-badge b`),
     counter: document.getElementById(`slide-counter`),
+    mobileCounter: document.getElementById(`mobile-slide-counter`),
     progress: document.getElementById(`footer-progress-fill`),
     slideNumbers: document.getElementById(`slide-numbers`),
     download: document.getElementById(`download`),
