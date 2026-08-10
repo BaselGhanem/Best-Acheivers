@@ -334,6 +334,7 @@
       box-shadow: 0 8px 20px rgba(0,166,147,0.25);
       position: relative;
       overflow: hidden;
+      margin-top: auto;
     }
 
     .action-download-btn::after {
