@@ -211,7 +211,17 @@ button { font: inherit; }
   z-index: 8;
 }
 
-.slide-numbers { flex: 1; display: flex; justify-content: center; gap: 8px; overflow: hidden; }
+.slide-numbers {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  overflow-x: auto;
+  direction: ltr;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.slide-numbers::-webkit-scrollbar { display: none; }
 .slide-number, .jump-button {
   width: 46px;
   height: 46px;
@@ -228,7 +238,7 @@ button { font: inherit; }
 
 .footer-progress { width: min(400px, 52%); height: 7px; margin: 20px auto 0; overflow: hidden; background: rgba(255,255,255,.12); border-radius: 20px; }
 .footer-progress span { display: block; height: 100%; width: 8.33%; background: var(--gold-light); transition: width .35s ease; }
-.slide-counter { margin: 10px auto 18px; color: rgba(255,255,255,.58); font-size: .8rem; }
+.slide-counter { margin: 10px auto 18px; color: rgba(255,255,255,.58); font-size: .8rem; direction: ltr; }
 
 .toast {
   position: fixed;
