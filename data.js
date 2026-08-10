@@ -6,7 +6,7 @@
 const APP_DATA = {
   monthLabel: `July 2026`,
   pageTitle: `موظف الشهر | دار الدواء`,
-  logoUrl: `https://www.dadgroup.com/wp-content/uploads/2023/11/uplift-dad-website-05.png`,
+  logoUrl: `assets/dar-al-dawa-logo.png`,
   photoBaseUrl: `https://raw.githubusercontent.com/BaselGhanem/Best-Acheivers/refs/heads/main/Mar/`,
   footerText: `جميع الحقوق محفوظة © 2026 مجموعة دار الدواء`,
 
