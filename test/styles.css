@@ -102,6 +102,19 @@ button { font: inherit; }
   z-index: 2;
 }
 
+.employee-photo.is-logo-fallback {
+  width: min(72%, 520px);
+  height: 72%;
+  left: 10%;
+  bottom: 14%;
+  padding: clamp(28px, 5vw, 72px);
+  object-fit: contain;
+  object-position: center;
+  border-radius: 42px;
+  background: rgba(255,255,255,.92);
+  filter: drop-shadow(0 24px 32px rgba(3,47,43,.14));
+}
+
 .content-panel {
   direction: rtl;
   display: flex;
@@ -259,7 +272,7 @@ button { font: inherit; }
 }
 .toast.is-visible { transform: translate(-50%, 0); }
 
-.is-changing .employee-photo { opacity: 0; transform: translateX(-24px) scale(.98); }
+.is-changing .employee-photo { opacity: 0; transform: translateX(-18px) scale(.985); transition-duration: .14s; }
 .is-changing .content-panel > *:not(.nav-arrow) { opacity: .35; transform: translateY(8px); }
 .content-panel > * { transition: opacity .25s ease, transform .25s ease; }
 
