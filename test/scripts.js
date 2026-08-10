@@ -38,10 +38,13 @@ function updateSlide() {
   elements.counter.textContent = `${formatNumber(currentIndex + 1)} / ${formatNumber(DATA.employees.length)}`;
   elements.progress.style.width = `${((currentIndex + 1) / DATA.employees.length) * 100}%`;
 
+  let activeButton;
   elements.slideNumbers.querySelectorAll(`.slide-number`).forEach((button, index) => {
     button.classList.toggle(`is-active`, index === currentIndex);
     button.setAttribute(`aria-current`, index === currentIndex ? `true` : `false`);
+    if (index === currentIndex) activeButton = button;
   });
+  activeButton?.scrollIntoView({ behavior: `smooth`, block: `nearest`, inline: `center` });
 }
 
 function goToSlide(index) {
