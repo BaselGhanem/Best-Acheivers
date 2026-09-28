@@ -38,18 +38,26 @@ const APP_DATA = {
   ],
 
   employees: [
-    { name: `ابراهيم محمد فخري سلطان`, department: `عمليات الجودة`, photoFile: `3672.png` },
-    { name: `ايمن سامي ابراهيم دبابنه`, department: `الهندسة`, photoFile: `2200.png` },
-    { name: `جودت عبدالله جودت المناصير`, department: `عمليات الجودة`, photoFile: `3604.png` },
-    { name: `رامي جمال محمد ابو ريا`, department: `عمليات الجودة`, photoFile: `3733.png` },
-    { name: `عامر سفيان عيسى سعاده`, department: `عمليات الجودة`, photoFile: `3688.png` },
-    { name: `عصام موسى عبدالهادي ابو زيد`, department: `عمليات الجودة`, photoFile: `2977.png` },
-    { name: `فادي هشام احمد جابر`, department: `الهندسة`, photoFile: `2473.png` },
-    { name: `محمد محمود عايد ابو صعيليك`, department: `عمليات الجودة`, photoFile: `3485.png` },
-    { name: `مرام محمود ساكب علي`, department: `عمليات الجودة`, photoFile: `2079.png` },
-    { name: `مها زهير عمر علي`, department: `عمليات الجودة`, photoFile: `2130.png` },
-    { name: `هبة اسامه احمد ابوشتيه`, department: `عمليات الجودة`, photoFile: `4136.png` },
-    { name: `يوسف محمد يوسف العلي`, department: `عمليات الجودة`, photoFile: `3659.png` }
+        { name: `ابراهيم قاسم صالح ضمره`, department: `دائرة المالية`, photoFile: `4137.png` },
+    { name: `احمد علي عبد الغني مبارك`, department: `دائرة المالية`, photoFile: `3102.png` },
+    { name: `اديب غالب اديب ابوجابر`, department: `البحث والتطوير`, photoFile: `4134.png` },
+    { name: `انس احمد سعيد النمروطي`, department: `الإنتاج`, photoFile: `3610.png` },
+    { name: `ايهاب وائل احمد ابو زينه`, department: `دائرة المالية`, photoFile: `2314.png` },
+    { name: `حازم حسن موسى ابراهيم`, department: `دائرة المالية`, photoFile: `2881.png` },
+    { name: `حمزه احمد ابراهيم ناصر`, department: `الهندسة`, photoFile: `3090.png` },
+    { name: `ساتيا اسامه تحسين صيام`, department: `الشؤون التنظيمية والعلمية`, photoFile: `3719.png` },
+    { name: `قيس فوزي عيسى حسبان`, department: `دائرة المالية`, photoFile: `4011.png` },
+    { name: `مجد ضياء الدين منير ابو شعلة`, department: `دائرة المالية`, photoFile: `4086.png` },
+    { name: `محمد خليل محمد العماوي`, department: `الإنتاج`, photoFile: `3531.png` },
+    { name: `محمد مجاهد محمود ردايده`, department: `البحث والتطوير`, photoFile: `3970.png` },
+    { name: `محمد مجدي محمد زاهر سعاده`, department: `البحث والتطوير`, photoFile: `4091.png` },
+    { name: `محمد محمود خليل ظاهر`, department: `دائرة المالية`, photoFile: `2040.png` },
+    { name: `معاذ خالد خليل ابراهيم`, department: `البحث والتطوير`, photoFile: `3705.png` },
+    { name: `مهند عطاالله حسن طه`, department: `دائرة المالية`, photoFile: `3209.png` },
+    { name: `هاني نهاد طايع صلاحات`, department: `دائرة المالية`, photoFile: `3297.png` },
+    { name: `وائل صابر عطيه ياسين`, department: `دائرة المالية`, photoFile: `2433.png` },
+    { name: `يزن نزار ابراهيم النسور`, department: `البحث والتطوير`, photoFile: `3828.png` }
+
   ]
 };
 
