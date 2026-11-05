@@ -89,7 +89,14 @@ function updateSlide(imageData = null) {
     button.setAttribute(`aria-current`, index === currentIndex ? `true` : `false`);
     if (index === currentIndex) activeButton = button;
   });
-  activeButton?.scrollIntoView({ behavior: `smooth`, block: `nearest`, inline: `center` });
+  if (activeButton) {
+    const scroller = elements.slideNumbers;
+    const buttonBounds = activeButton.getBoundingClientRect();
+    const scrollerBounds = scroller.getBoundingClientRect();
+    const left = scroller.scrollLeft + buttonBounds.left - scrollerBounds.left
+      - (scroller.clientWidth - buttonBounds.width) / 2;
+    scroller.scrollTo({ left, behavior: `smooth` });
+  }
 }
 
 async function goToSlide(index) {
