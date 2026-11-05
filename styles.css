@@ -354,3 +354,66 @@ button { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
+
+/* Viewport containment: keep the complete slideshow on screen. */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.slideshow-shell {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.hero-slide,
+.portrait-panel,
+.content-panel,
+.slide-navigation,
+.slide-numbers {
+  min-width: 0;
+}
+
+.slide-numbers { max-width: 100%; }
+
+@media (min-width: 901px) {
+  .slideshow-shell {
+    height: 100svh;
+    min-height: 0;
+    grid-template-rows: auto minmax(0, 1fr) auto auto auto;
+  }
+  .hero-slide {
+    min-height: 0;
+    overflow: hidden;
+    grid-template-columns: minmax(0, .95fr) minmax(0, 1.2fr);
+  }
+  .portrait-panel { min-height: 0; }
+  .content-panel {
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 901px) and (max-height: 850px) {
+  .topbar { min-height: 76px; padding-block: 10px; }
+  .brand-logo { height: 50px; }
+  .content-panel { padding-block: 12px; }
+  .content-panel h2 {
+    margin-block: 12px 8px;
+    font-size: clamp(2.25rem, 4vw, 4.25rem);
+    line-height: 1.16;
+  }
+  .recognition-copy { margin-bottom: 14px; line-height: 1.65; }
+  .department-pill, .achievement-pill { min-height: 44px; padding-block: 8px; }
+  .achievement-progress { margin-top: 16px; }
+  .download-button { min-height: 54px; margin-top: 18px; }
+  .slide-navigation { min-height: 64px; padding-block: 6px; margin-top: 0; }
+  .footer-progress { margin-top: 8px; }
+  .slide-counter { margin-block: 5px 8px; }
+}
+
+@media (max-width: 900px) {
+  .hero-slide { min-width: 0; grid-template-columns: minmax(0, 1fr); }
+}
