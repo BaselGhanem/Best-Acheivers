@@ -6,10 +6,16 @@ let transitionLocked = false;
 
 const elements = {};
 
-function employeePhotoUrl(employee) {
+function employeeOriginalPhotoUrl(employee) {
   if (employee.photo) return employee.photo;
   if (employee.photoFile) return `${DATA.photoBaseUrl}${employee.photoFile}`;
   return null;
+}
+
+function employeePhotoUrl(employee) {
+  const original = employeeOriginalPhotoUrl(employee);
+  if (!original || !employee.photoFile?.toLowerCase().endsWith(`.png`)) return original;
+  return `${DATA.photoBaseUrl}${employee.photoFile.slice(0, -4)}.webp`;
 }
 
 function preloadImage(src, useCors = true) {
@@ -27,6 +33,11 @@ async function resolveEmployeeImage(employee) {
 
   if (employeeSrc && await preloadImage(employeeSrc)) {
     return { src: employeeSrc, isFallback: false };
+  }
+
+  const originalSrc = employeeOriginalPhotoUrl(employee);
+  if (originalSrc && originalSrc !== employeeSrc && await preloadImage(originalSrc)) {
+    return { src: originalSrc, isFallback: false };
   }
 
   await preloadImage(DATA.logoUrl, false);
@@ -48,6 +59,18 @@ function applyEmployeeImage(employee, imageData) {
   elements.photo.src = fallback.src;
   elements.photo.alt = fallback.isFallback ? `شعار دار الدواء` : employee.name;
   elements.photo.onerror = () => {
+    const originalSrc = employeeOriginalPhotoUrl(employee);
+    if (!fallback.isFallback && originalSrc && elements.photo.src !== new URL(originalSrc, document.baseURI).href) {
+      elements.photo.onerror = () => {
+        elements.photo.onerror = null;
+        elements.photo.classList.add(`is-logo-fallback`);
+        elements.photo.removeAttribute(`crossorigin`);
+        elements.photo.src = DATA.logoUrl;
+        elements.photo.alt = `شعار دار الدواء`;
+      };
+      elements.photo.src = originalSrc;
+      return;
+    }
     elements.photo.onerror = null;
     elements.photo.classList.add(`is-logo-fallback`);
     elements.photo.removeAttribute(`crossorigin`);
