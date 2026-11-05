@@ -17,7 +17,7 @@ DATA = ROOT / "data.js"
 def selected_files() -> list[str]:
     text = DATA.read_text(encoding="utf-8")
     block = text.split("employees: [", 1)[1].split("\n  ]", 1)[0]
-    return list(dict.fromkeys(re.findall(r"photoFile:\\s*\\`([^\\`]+\\.png)\\`", block)))
+    return list(dict.fromkeys(re.findall(r"photoFile:\s*`([^ `]+\.png)`", block)))
 
 
 def convert(filename: str, session: object | None, quality: int) -> tuple[bool, int, int]:
