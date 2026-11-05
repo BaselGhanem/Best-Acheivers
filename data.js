@@ -56,7 +56,7 @@ const APP_DATA = {
     { name: `مهند عطاالله حسن طه`, department: `دائرة المالية`, photoFile: `3209.png` },
     { name: `هاني نهاد طايع صلاحات`, department: `دائرة المالية`, photoFile: `3297.png` },
     { name: `وائل صابر عطيه ياسين`, department: `دائرة المالية`, photoFile: `2433.png` },
-    { name: `يزن نزار ابراهيم النسور`, department: `البحث والتطوير`, photoFile: `3828.png` }
+    { name: `يزن نزار ابراهيم النسور`, department: `البحث والتطوير`, photoFile: `3828.png` },
 
     { name: `عبدالله حسام توفيق البلبول`, department: `الإنتاج`, photoFile: `3126.png` },
     { name: `عبدالله ابراهيم خليل ابو مكسر`, department: `الإنتاج`, photoFile: `3800.png` },
